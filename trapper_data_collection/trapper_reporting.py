@@ -38,7 +38,8 @@ def get_input_parameters():
         # parser.add_argument('ago_pass', nargs='?', type=str, help='AGOL Password')
         parser.add_argument('--log_level', default='INFO', choices=['DEBUG', 'INFO', 'WARNING', 'ERROR'],
                             help='Log level')
-        parser.add_argument('--log_dir', help='Path to log directory', default='logs')
+        parser.add_argument('--log_dir', help='Path to log directory', 
+                            default=os.path.join(os.path.dirname(sys.argv[0]),'logs'))
 
         args = parser.parse_args()
         try:
