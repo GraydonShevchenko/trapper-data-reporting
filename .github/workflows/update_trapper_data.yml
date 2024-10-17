@@ -43,3 +43,11 @@ jobs:
         . ~/.bashrc
         conda activate trapper_env
         python3 trapper_data_collection/trapper_data_modification.py
+
+    - name: commit files
+      run: |
+        git config --local user.email action@github.com
+        git config --local user.name gitHub-action
+        git add .
+        git commit -am "write update data log files"
+        git push

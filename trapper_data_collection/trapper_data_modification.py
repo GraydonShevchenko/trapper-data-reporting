@@ -34,7 +34,7 @@ def get_input_parameters():
         # parser.add_argument('ago_pass', nargs='?', type=str, help='AGOL Password')
         parser.add_argument('--log_level', default='INFO', choices=['DEBUG', 'INFO', 'WARNING', 'ERROR'],
                             help='Log level')
-        parser.add_argument('--log_dir', help='Path to log directory')
+        parser.add_argument('--log_dir', help='Path to log directory', default='logs')
 
         args = parser.parse_args()
         try:
@@ -76,7 +76,7 @@ class Traps:
     def shift_traps(self):
         """
         Function:
-            Shifts the trap points in teh AGOL feature layer to the centre of the meso grid if the user indicated to not include coordinates.
+            Shifts the trap points in the AGOL feature layer to the centre of the meso grid if the user indicated to not include coordinates.
         Returns:
             None
         """
