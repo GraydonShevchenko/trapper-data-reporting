@@ -48,6 +48,6 @@ jobs:
       run: |
         git config --local user.email action@github.com
         git config --local user.name gitHub-action
-        git add .
+        git add --all logs/
         git commit -am "write update data log files"
         git push

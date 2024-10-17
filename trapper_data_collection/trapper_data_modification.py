@@ -242,6 +242,8 @@ class Traps:
                     update_count += 1
                     feature_to_be_updated = deepcopy(original_feature)
                     feature_to_be_updated.attributes[fld_picture] = ','.join(lst_photo_names)
+                    if layer_name == 'fisher':
+                        feature_to_be_updated.attributes['EMAIL_MESSAGE'] = ''
                     features_for_update.append(feature_to_be_updated)
         if features_for_update:
             self.logger.info(f'Updating photo names for {update_count} {layer_name}')
