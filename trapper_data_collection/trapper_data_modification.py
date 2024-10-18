@@ -194,7 +194,7 @@ class Traps:
 
         for oid in lst_oids:
             lst_attachments = ago_flayer.attachments.get_list(oid=oid)
-            self.logger.info(lst_attachments)
+            self.logger.debug(lst_attachments)
             if lst_attachments:
                 original_feature = [f for f in all_features if f.attributes['OBJECTID'] == oid][0]
                 if layer_name == 'trap checks':
@@ -211,10 +211,10 @@ class Traps:
                     lst_pictures = original_feature.attributes[fld_picture].split(',')
                 except:
                     lst_pictures = []
-                self.logger.info(lst_pictures)
+                self.logger.debug(lst_pictures)
                 bl_update = False
                 for attach in lst_attachments:
-                    self.logger.info(attach['name'])
+                    self.logger.debug(attach['name'])
                     if attach['name'].startswith(photo_prefix) and attach['name'] in lst_pictures:
                         if len(lst_attachments) > 5 or 'photo prefix' in lst_pictures[0]:
                             lst_photo_names = [f'{len(lst_attachments)} photos taken with photo prefix {unique_id}']
