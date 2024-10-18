@@ -216,8 +216,11 @@ class Traps:
                 for attach in lst_attachments:
                     self.logger.info(attach['name'])
                     if attach['name'].startswith(photo_prefix) and attach['name'] in lst_pictures:
-                        lst_photo_names.append(attach['name'])
-                        continue
+                        if len(lst_attachments) > 5 or 'photo prefix' in lst_pictures[0]:
+                            lst_photo_names = [f'{len(lst_attachments)} photos taken with photo prefix {unique_id}']
+                        else:
+                            lst_photo_names.append(attach['name'])
+                            continue
                     attach_name = attach['name']
                     file_type = attach_name.split('.')[-1]
                     if file_type in ['avi', 'mp4']:
