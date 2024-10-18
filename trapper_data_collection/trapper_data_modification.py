@@ -216,6 +216,8 @@ class Traps:
                 for attach in lst_attachments:
                     self.logger.debug(attach['name'])
                     if attach['name'].startswith(photo_prefix) and attach['name'] in lst_pictures:
+                        self.logger.info(len(lst_attachments))
+                        self.logger.info(lst_pictures)
                         if len(lst_attachments) > 5 or 'photo prefix' in lst_pictures[0]:
                             lst_photo_names = [f'{len(lst_attachments)} photos taken with photo prefix {unique_id}']
                             self.logger.info(lst_photo_names)
