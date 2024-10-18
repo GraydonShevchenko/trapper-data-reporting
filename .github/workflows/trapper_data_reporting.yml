@@ -51,6 +51,6 @@ jobs:
       run: |
         git config --local user.email action@github.com
         git config --local user.name gitHub-action
-        git add logs/*
+        git add logs
         git commit -am "write reporting log files"
         git push
