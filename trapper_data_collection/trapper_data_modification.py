@@ -211,10 +211,10 @@ class Traps:
                     lst_pictures = original_feature.attributes[fld_picture].split(',')
                 except:
                     lst_pictures = []
-                self.logger.debug(lst_pictures)
+                self.logger.info(lst_pictures)
                 bl_update = False
                 for attach in lst_attachments:
-                    self.logger.debug(attach['name'])
+                    self.logger.info(attach['name'])
                     if attach['name'].startswith(photo_prefix) and attach['name'] in lst_pictures:
                         if attach_num > 5:
                             lst_photo_names = \
