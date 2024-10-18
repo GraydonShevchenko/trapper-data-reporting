@@ -216,10 +216,8 @@ class Traps:
                 for attach in lst_attachments:
                     self.logger.debug(attach['name'])
                     if attach['name'].startswith(photo_prefix) and attach['name'] in lst_pictures:
-                        self.logger.info(len(lst_attachments))
-                        self.logger.info(lst_pictures)
-                        if len(lst_attachments) > 5 or 'photo prefix' in lst_pictures[0]:
-                            lst_photo_names = [f'{len(lst_attachments)} photos taken with photo prefix {unique_id}']
+                        if attach_num > 5:
+                            lst_photo_names = [f'{attach_num} photos taken with photo prefix {unique_id}']
                             self.logger.info(lst_photo_names)
                         else:
                             lst_photo_names.append(attach['name'])
@@ -231,21 +229,22 @@ class Traps:
                     else:
                         type_name = 'photo'
                     new_file_name = f'{photo_prefix}_{unique_id.lower()}_{type_name}{attach_num}.{file_type}'
-                    self.logger.info(f'Renaming {attach_name} to {new_file_name}')
-                    attach_id = attach['id']
-                    attach_file = ago_flayer.attachments.download(oid=oid, attachment_id=attach_id)[0]
-                    new_attach_file = os.path.join(os.path.dirname(attach_file), new_file_name)
-                    os.rename(attach_file, new_attach_file)
-                    try:
-                        ago_flayer.attachments.update(oid=oid, attachment_id=attach_id, file_path=new_attach_file)
-                    except:
-                        self.logger.warning('File too big to update, uploading new file and deleting old')
-                        ago_flayer.attachments.add(oid=oid, file_path=new_attach_file)
-                        ago_flayer.attachments.delete(oid=oid, attachment_id=attach_id)
-                    if 'photo prefix' not in lst_photo_names:
-                        lst_photo_names.append(new_file_name)
+                    if attach_name != new_file_name:
+                        self.logger.info(f'Renaming {attach_name} to {new_file_name}')
+                        attach_id = attach['id']
+                        attach_file = ago_flayer.attachments.download(oid=oid, attachment_id=attach_id)[0]
+                        new_attach_file = os.path.join(os.path.dirname(attach_file), new_file_name)
+                        os.rename(attach_file, new_attach_file)
+                        try:
+                            ago_flayer.attachments.update(oid=oid, attachment_id=attach_id, file_path=new_attach_file)
+                        except:
+                            self.logger.warning('File too big to update, uploading new file and deleting old')
+                            ago_flayer.attachments.add(oid=oid, file_path=new_attach_file)
+                            ago_flayer.attachments.delete(oid=oid, attachment_id=attach_id)
+                            lst_photo_names.append(new_file_name)
+                        bl_update = True    
                     attach_num += 1
-                    bl_update = True
+                    
                     
                 if bl_update:
                     update_count += 1
