@@ -44,9 +44,9 @@ class Environment:
 
         log_fmt = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s')
         log_file_base_name = os.path.basename(sys.argv[0])
-        log_file_extension = 'log'
+        log_file_extension = 'txt'
         timestamp = dt.now().strftime('%Y-%m-%d_%H-%M-%S')
-        log_file = '{}_{}.{}'.format(timestamp, log_file_base_name, log_file_extension)
+        log_file = 'script_log.txt'
 
         logger.setLevel(args.log_level)
 
@@ -61,9 +61,9 @@ class Environment:
             except OSError:
                 pass
 
-            fh = logging.FileHandler(os.path.join(args.log_dir, log_file))
-            fh.setLevel(args.log_level)
-            fh.setFormatter(log_fmt)
-            logger.addHandler(fh)
+        fh = logging.FileHandler(os.path.join('.', log_file))
+        fh.setLevel(args.log_level)
+        fh.setFormatter(log_fmt)
+        logger.addHandler(fh)
 
         return logger
