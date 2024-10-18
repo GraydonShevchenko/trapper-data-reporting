@@ -218,6 +218,7 @@ class Traps:
                     if attach['name'].startswith(photo_prefix) and attach['name'] in lst_pictures:
                         if len(lst_attachments) > 5 or 'photo prefix' in lst_pictures[0]:
                             lst_photo_names = [f'{len(lst_attachments)} photos taken with photo prefix {unique_id}']
+                            self.logger.info(lst_photo_names)
                         else:
                             lst_photo_names.append(attach['name'])
                             continue
