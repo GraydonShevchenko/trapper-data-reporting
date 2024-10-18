@@ -211,17 +211,17 @@ class Traps:
                     lst_pictures = original_feature.attributes[fld_picture].split(',')
                 except:
                     lst_pictures = []
-                self.logger.info(lst_pictures)
+                self.logger.debug(lst_pictures)
                 bl_update = False
                 for attach in lst_attachments:
-                    self.logger.info(attach['name'])
+                    self.logger.debug(attach['name'])
                     if attach['name'].startswith(photo_prefix) and attach['name'] in lst_pictures:
                         lst_photo_names.append(attach['name'])
                         continue
                     if attach_num > 5:
                         lst_photo_names = \
                             [f'{attach_num} photos taken with photo prefix {photo_prefix}_{unique_id.lower()}']
-                        self.logger.info(lst_photo_names)
+                        self.logger.debug(lst_photo_names)
 
                     attach_name = attach['name']
                     file_type = attach_name.split('.')[-1]
@@ -230,9 +230,9 @@ class Traps:
                     else:
                         type_name = 'photo'
                     new_file_name = f'{photo_prefix}_{unique_id.lower()}_{type_name}{attach_num}.{file_type}'
-                    self.logger.info(f'Renaming {attach_name} to {new_file_name}')
+                    
                     if attach_name != new_file_name:
-                        
+                        self.logger.info(f'Renaming {attach_name} to {new_file_name}')
                         attach_id = attach['id']
                         attach_file = ago_flayer.attachments.download(oid=oid, attachment_id=attach_id)[0]
                         new_attach_file = os.path.join(os.path.dirname(attach_file), new_file_name)
@@ -244,7 +244,7 @@ class Traps:
                             ago_flayer.attachments.add(oid=oid, file_path=new_attach_file)
                             ago_flayer.attachments.delete(oid=oid, attachment_id=attach_id)
                             lst_photo_names.append(new_file_name)
-                        bl_update = True    
+                    bl_update = True    
                     attach_num += 1
                     
                     
