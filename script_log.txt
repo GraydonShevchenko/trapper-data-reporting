@@ -1,9 +1,32 @@
-2024-10-18 22:48:11,046 - INFO - Connecting to map hub
-2024-10-18 22:48:11,853 - INFO - Connection successful
-2024-10-18 22:48:11,854 - INFO - Shifting any traps that indicated the coordinates should not be included
-2024-10-18 22:48:12,577 - INFO - Updating traps layer with most recent trap check status
-2024-10-18 22:48:22,413 - INFO - Renaming photos on the traps layer
-2024-10-18 22:48:35,882 - INFO - Renaming photos on the trap checks layer
-2024-10-18 22:48:57,486 - INFO - Renaming photos on the fisher layer
-2024-10-18 22:48:58,379 - INFO - ['6 photos taken with photo prefix VISUAL_19']
-2024-10-18 22:49:01,092 - INFO - Disconnecting from maphub
+2024-10-18 22:54:45,320 - INFO - Connecting to map hub
+2024-10-18 22:54:46,480 - INFO - Connection successful
+2024-10-18 22:54:46,481 - INFO - Shifting any traps that indicated the coordinates should not be included
+2024-10-18 22:54:47,334 - INFO - Updating traps layer with most recent trap check status
+2024-10-18 22:54:59,206 - INFO - Renaming photos on the traps layer
+2024-10-18 22:55:14,473 - INFO - Renaming photos on the trap checks layer
+2024-10-18 22:55:38,333 - INFO - Renaming trapcheck_tr0330t006_t006_4_check-8_photo1.jpg to trapcheck_tr0330t006_t006_4_check-8_photo1.jpg
+2024-10-18 22:55:38,333 - INFO - Renaming trapcheck_tr0330t006_t006_4_check-8_photo2.jpg to trapcheck_tr0330t006_t006_4_check-8_photo2.jpg
+2024-10-18 22:55:38,333 - INFO - Renaming trapcheck_tr0330t006_t006_4_check-8_photo3.jpg to trapcheck_tr0330t006_t006_4_check-8_photo3.jpg
+2024-10-18 22:55:38,333 - INFO - Renaming trapcheck_tr0330t006_t006_4_check-8_photo4.jpg to trapcheck_tr0330t006_t006_4_check-8_photo4.jpg
+2024-10-18 22:55:38,333 - INFO - Renaming trapcheck_tr0330t006_t006_4_check-8_photo5.jpg to trapcheck_tr0330t006_t006_4_check-8_photo5.jpg
+2024-10-18 22:55:38,333 - INFO - Renaming trapcheck_tr0330t006_t006_4_check-8_photo6.jpg to trapcheck_tr0330t006_t006_4_check-8_photo6.jpg
+2024-10-18 22:55:38,333 - INFO - Renaming trapcheck_tr0330t006_t006_4_check-8_photo7.jpg to trapcheck_tr0330t006_t006_4_check-8_photo7.jpg
+2024-10-18 22:55:38,333 - INFO - Renaming trapcheck_tr0330t006_t006_4_check-8_photo8.jpg to trapcheck_tr0330t006_t006_4_check-8_photo8.jpg
+2024-10-18 22:55:38,333 - INFO - Renaming trapcheck_tr0330t006_t006_4_check-8_photo9.jpg to trapcheck_tr0330t006_t006_4_check-8_photo9.jpg
+2024-10-18 22:55:38,333 - INFO - Renaming trapcheck_tr0330t006_t006_4_check-8_photo10.jpg to trapcheck_tr0330t006_t006_4_check-8_photo10.jpg
+2024-10-18 22:55:38,333 - INFO - Renaming trapcheck_tr0330t006_t006_4_check-8_photo11.jpg to trapcheck_tr0330t006_t006_4_check-8_photo11.jpg
+2024-10-18 22:55:38,333 - INFO - Renaming trapcheck_tr0330t006_t006_4_check-8_photo12.jpg to trapcheck_tr0330t006_t006_4_check-8_photo12.jpg
+2024-10-18 22:55:38,333 - INFO - Renaming trapcheck_tr0330t006_t006_4_check-8_photo13.jpg to trapcheck_tr0330t006_t006_4_check-8_photo13.jpg
+2024-10-18 22:55:38,333 - INFO - Renaming trapcheck_tr0330t006_t006_4_check-8_photo14.jpg to trapcheck_tr0330t006_t006_4_check-8_photo14.jpg
+2024-10-18 22:55:38,333 - INFO - Renaming trapcheck_tr0330t006_t006_4_check-8_photo15.jpg to trapcheck_tr0330t006_t006_4_check-8_photo15.jpg
+2024-10-18 22:55:38,333 - INFO - Renaming trapcheck_tr0330t006_t006_4_check-8_photo16.jpg to trapcheck_tr0330t006_t006_4_check-8_photo16.jpg
+2024-10-18 22:55:39,598 - INFO - Renaming trapcheck_tr0712t012_t012_20_check-4_photo1.jpg to trapcheck_tr0712t012_t012_20_check-4_photo1.jpg
+2024-10-18 22:55:41,147 - INFO - Renaming photos on the fisher layer
+2024-10-18 22:55:42,247 - INFO - Renaming fisher_visual_19_photo1.jpg to fisher_visual_19_photo1.jpg
+2024-10-18 22:55:42,247 - INFO - Renaming fisher_visual_19_photo2.jpg to fisher_visual_19_photo2.jpg
+2024-10-18 22:55:42,247 - INFO - Renaming fisher_visual_19_photo3.jpg to fisher_visual_19_photo3.jpg
+2024-10-18 22:55:42,247 - INFO - Renaming fisher_visual_19_photo4.jpg to fisher_visual_19_photo4.jpg
+2024-10-18 22:55:42,247 - INFO - Renaming fisher_visual_19_photo5.jpg to fisher_visual_19_photo5.jpg
+2024-10-18 22:55:42,247 - INFO - ['6 photos taken with photo prefix fisher_visual_19']
+2024-10-18 22:55:42,247 - INFO - Renaming fisher_visual_19_photo6.jpg to fisher_visual_19_photo6.jpg
+2024-10-18 22:55:45,869 - INFO - Disconnecting from maphub
