@@ -216,13 +216,13 @@ class Traps:
                 for attach in lst_attachments:
                     self.logger.info(attach['name'])
                     if attach['name'].startswith(photo_prefix) and attach['name'] in lst_pictures:
-                        if attach_num > 5:
-                            lst_photo_names = \
-                                [f'{attach_num} photos taken with photo prefix {photo_prefix}_{unique_id.lower()}']
-                            self.logger.info(lst_photo_names)
-                        else:
-                            lst_photo_names.append(attach['name'])
-                            continue
+                        lst_photo_names.append(attach['name'])
+                        continue
+                    if attach_num > 5:
+                        lst_photo_names = \
+                            [f'{attach_num} photos taken with photo prefix {photo_prefix}_{unique_id.lower()}']
+                        self.logger.info(lst_photo_names)
+
                     attach_name = attach['name']
                     file_type = attach_name.split('.')[-1]
                     if file_type in ['avi', 'mp4']:
