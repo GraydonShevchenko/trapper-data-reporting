@@ -61,6 +61,9 @@ class Environment:
             except OSError:
                 pass
 
+        if os.path.exists(os.path.join('.', log_file)):
+            os.remove(os.path.join('.', log_file))
+
         fh = logging.FileHandler(os.path.join('.', log_file))
         fh.setLevel(args.log_level)
         fh.setFormatter(log_fmt)
