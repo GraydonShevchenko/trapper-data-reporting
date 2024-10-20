@@ -1,16 +1,10 @@
-2024-10-19 08:44:22,001 - INFO - Connecting to map hub
-2024-10-19 08:44:22,822 - INFO - Connection successful
-2024-10-19 08:44:22,822 - INFO - Connecting to object storage
-2024-10-19 08:45:07,733 - INFO - Downloading photos on the traps layer
-2024-10-19 08:45:20,436 - INFO - Downloading photos on the trap checks layer
-2024-10-19 08:45:39,253 - INFO - Copying trapcheck_tr0712t012_t012_20_check-4_photo1.jpg to object storage
-2024-10-19 08:45:41,276 - INFO - Downloading photos on the fisher layer
-2024-10-19 08:45:44,798 - INFO - Copying fisher_track_80_photo1.JPG to object storage
-2024-10-19 08:45:45,572 - INFO - Copying fisher_visual_83_photo1.jpeg to object storage
-2024-10-19 08:45:45,925 - INFO - Creating report
-2024-10-19 08:45:45,926 - INFO - Generating traps sheet
-2024-10-19 08:45:46,520 - INFO - Generating trap checks sheet
-2024-10-19 08:45:47,050 - INFO - Generating fisher sheet
-2024-10-19 08:45:47,416 - INFO - Uploading document to object storage
-2024-10-19 08:45:47,715 - INFO - Disconnecting from maphub
-2024-10-19 08:45:47,715 - INFO - Closing object storage connection
+2024-10-20 08:28:37,620 - INFO - Connecting to map hub
+2024-10-20 08:28:38,579 - INFO - Connection successful
+2024-10-20 08:28:38,579 - INFO - Shifting any traps that indicated the coordinates should not be included
+2024-10-20 08:28:39,512 - INFO - Updating traps layer with most recent trap check status
+2024-10-20 08:28:51,368 - INFO - Renaming photos on the traps layer
+2024-10-20 08:29:05,986 - INFO - Renaming photos on the trap checks layer
+2024-10-20 08:29:31,886 - INFO - Updating photo names for 1 trap checks
+2024-10-20 08:29:32,156 - INFO - Renaming photos on the fisher layer
+2024-10-20 08:29:36,791 - INFO - Updating photo names for 1 fisher
+2024-10-20 08:29:36,943 - INFO - Disconnecting from maphub
