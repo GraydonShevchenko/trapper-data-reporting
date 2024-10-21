@@ -218,10 +218,10 @@ class Traps:
                     if attach['name'].startswith(photo_prefix) and attach['name'] in lst_pictures:
                         lst_photo_names.append(attach['name'])
                         continue
-                    if attach_num > 5:
-                        lst_photo_names = \
-                            [f'{attach_num} photos taken with photo prefix {photo_prefix}_{unique_id.lower()}']
-                        self.logger.debug(lst_photo_names)
+                    # if attach_num > 5:
+                    #     lst_photo_names = \
+                    #         [f'{attach_num} photos taken with photo prefix {photo_prefix}_{unique_id.lower()}']
+                    #     self.logger.debug(lst_photo_names)
 
                     attach_name = attach['name']
                     file_type = attach_name.split('.')[-1]
