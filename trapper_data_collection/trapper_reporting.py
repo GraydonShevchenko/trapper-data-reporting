@@ -2,11 +2,13 @@ import sys, os
 import pandas as pd
 import boto3
 import openpyxl
+import datetime as dt
 from openpyxl.worksheet.dimensions import ColumnDimension, DimensionHolder
 from openpyxl.utils import get_column_letter
 from openpyxl.styles import Alignment
 from arcgis.gis import GIS
 from argparse import ArgumentParser
+from collections import defaultdict
 import logging
 
 from util.environment import Environment
@@ -21,6 +23,7 @@ def run_app():
     
     report.download_attachments()
     report.create_excel()
+    report.create_wild_report()
 
     del report
 
@@ -75,6 +78,8 @@ class TrapReport:
         self.portal_url = trap_config.MAPHUB
         self.ago_traps = trap_config.TRAPS
         self.ago_fisher = trap_config.FISHER
+        self.ago_parks = trap_config.PARKS
+        self.ago_wmu = trap_config.WMU
 
         self.trapper_bucket = trap_config.BUCKET
         self.bucket_prefix ='trapper_data_collection'
@@ -167,6 +172,43 @@ class TrapReport:
                         self.boto_resource.meta.client.upload_file(attach_file, self.trapper_bucket, ostore_path)
 
 
+    def create_wild_report(self) -> None:
+        self.logger.info('Creating WILD report')
+
+        dict_wild = defaultdict(WildReport)
+
+        trap_layer = self.gis.content.get(self.ago_traps)
+
+        trap_fset = trap_layer.query()
+        all_features = trap_fset.features
+        if len(all_features) == 0:
+            return
+
+        trap_sdf = trap_fset.sdf
+        trap_sdf.reset_index()
+
+        for index in trap_sdf.index:
+            oid = trap_sdf['OBJECTID'][index]
+            trapline = trap_sdf['TRAPLINE_ID'][index]
+
+            trap_checks = trap_layer.query_related_records(object_ids=oid, relationship_id='globalid')
+            all_checks = trap_checks.features
+            if len(all_checks) == 0:
+                continue
+
+            trapline_type = 'Registered Trapline' if trapline.lower() != 'unknown' else 'Private Property'
+            month = trap_sdf['CHECK_DATE'][index].strftime('%B')
+
+            dict_wild[trapline].lst_checks.append(WildReportCheck(tl_type=trapline_type, tl_num=trapline, month=month))
+            
+        self.logger.info(dict_wild)
+        
+            
+
+
+
+        
+
     def create_excel(self) -> None:
         self.logger.info('Creating report')
         
@@ -214,6 +256,29 @@ class TrapReport:
         for row in ws.iter_rows():
             for cell in row:
                 cell.alignment = Alignment(wrap_text=True)
+
+class WildReport:
+    def __init__(self) -> None:
+        self.lst_checks = []
+
+class WildReportCheck:
+    def __init__(self, trap_year: str='', harvest: str='', tl_type: str='', tl_num: str='', month: str='', 
+                 spec: str='', wmu: str='', ct_f: int=0, ct_m: int=0, ct_u: int=0, p_harv: str='No', 
+                 p_name: str='') -> None:
+        self.trap_year = trap_year
+        self.harvest = harvest
+        self.trapline_type = tl_type
+        self.trapline_number = tl_num
+        self.month = month
+        self.species = spec
+        self.wmu = wmu
+        self.male_count = ct_m
+        self.female_count = ct_f
+        self.unknown_count = ct_u
+        self.park_harvest = p_harv
+        self.park_name = p_name
+        self.permit = ''
+
 
 
 def get_col_widths(dataframe):
