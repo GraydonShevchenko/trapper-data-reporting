@@ -1,10 +1,10 @@
-2024-10-21 08:29:26,506 - INFO - Connecting to map hub
-2024-10-21 08:29:28,087 - INFO - Connection successful
-2024-10-21 08:29:28,087 - INFO - Shifting any traps that indicated the coordinates should not be included
-2024-10-21 08:29:29,215 - INFO - Updating traps layer with most recent trap check status
-2024-10-21 08:29:42,312 - INFO - Renaming photos on the traps layer
-2024-10-21 08:30:00,698 - INFO - Renaming photos on the trap checks layer
-2024-10-21 08:30:32,802 - INFO - Updating photo names for 1 trap checks
-2024-10-21 08:30:33,433 - INFO - Renaming photos on the fisher layer
-2024-10-21 08:30:39,166 - INFO - Updating photo names for 1 fisher
-2024-10-21 08:30:39,398 - INFO - Disconnecting from maphub
+2024-10-21 17:12:03,505 - INFO - Connecting to map hub
+2024-10-21 17:12:05,039 - INFO - Connection successful
+2024-10-21 17:12:05,039 - INFO - Shifting any traps that indicated the coordinates should not be included
+2024-10-21 17:12:06,098 - INFO - Updating traps layer with most recent trap check status
+2024-10-21 17:12:19,368 - INFO - Renaming photos on the traps layer
+2024-10-21 17:12:37,174 - INFO - Renaming photos on the trap checks layer
+2024-10-21 17:13:07,427 - INFO - Updating photo names for 1 trap checks
+2024-10-21 17:13:07,836 - INFO - Renaming photos on the fisher layer
+2024-10-21 17:13:13,563 - INFO - Updating photo names for 1 fisher
+2024-10-21 17:13:13,756 - INFO - Disconnecting from maphub
