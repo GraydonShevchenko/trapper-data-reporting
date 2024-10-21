@@ -242,7 +242,7 @@ class Traps:
                         self.logger.warning('File too big to update, uploading new file and deleting old')
                         ago_flayer.attachments.add(oid=oid, file_path=new_attach_file)
                         ago_flayer.attachments.delete(oid=oid, attachment_id=attach_id)
-                        lst_photo_names.append(new_file_name)
+                    lst_photo_names.append(new_file_name)
                     bl_update = True    
                     attach_num += 1
                     
