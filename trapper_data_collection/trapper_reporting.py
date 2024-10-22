@@ -84,6 +84,8 @@ class TrapReport:
         self.trapper_bucket = trap_config.BUCKET
         self.bucket_prefix ='trapper_data_collection'
 
+        self.dict_traplines = defaultdict(Trapline)
+
         self.logger.info('Connecting to map hub')
         self.gis = GIS(url=self.portal_url, username=self.ago_user, password=self.ago_pass, expiration=9999)
         self.logger.info('Connection successful')
@@ -175,11 +177,12 @@ class TrapReport:
     def create_wild_report(self) -> None:
         self.logger.info('Creating WILD report')
 
-        dict_wild = defaultdict(WildReport)
+        dict_wild = defaultdict(Trapline)
 
-        trap_layer = self.gis.content.get(self.ago_traps)
+        ago_item = self.gis.content.get(self.ago_traps)
+        ago_flayer = ago_item.layers[0]
 
-        trap_fset = trap_layer.query()
+        trap_fset = ago_flayer.query()
         all_features = trap_fset.features
         if len(all_features) == 0:
             return
@@ -190,8 +193,11 @@ class TrapReport:
         for index in trap_sdf.index:
             oid = trap_sdf['OBJECTID'][index]
             trapline = trap_sdf['TRAPLINE_ID'][index]
+            set_id = trap_sdf['SET_UNIQUE_ID'][index]
 
-            trap_checks = trap_layer.query_related_records(object_ids=oid, relationship_id='globalid')
+            self.logger.info(f'Working on {set_id}')
+
+            trap_checks = ago_flayer.query_related_records(object_ids=oid, relationship_id='0')
             all_checks = trap_checks.features
             if len(all_checks) == 0:
                 continue
@@ -199,15 +205,11 @@ class TrapReport:
             trapline_type = 'Registered Trapline' if trapline.lower() != 'unknown' else 'Private Property'
             month = trap_sdf['CHECK_DATE'][index].strftime('%B')
 
-            dict_wild[trapline].lst_checks.append(WildReportCheck(tl_type=trapline_type, tl_num=trapline, month=month))
+            dict_wild[trapline].trapline = trapline
+            dict_wild[trapline].dict_traps[set_id].lst_checks.append(TrapCheck(tl_type=trapline_type, tl_num=trapline, month=month))
             
         self.logger.info(dict_wild)
-        
-            
-
-
-
-        
+    
 
     def create_excel(self) -> None:
         self.logger.info('Creating report')
@@ -257,27 +259,37 @@ class TrapReport:
             for cell in row:
                 cell.alignment = Alignment(wrap_text=True)
 
-class WildReport:
+        
+
+
+
+class Trapline:
     def __init__(self) -> None:
+        self.trapline = ''
+        self.dict_traps = defaultdict(Trapset)
+        
+class Trapset:
+    def __init__(self, wmu: str='', p_harv: str='', p_name: str='') -> None:
+        self.point_geom = None
+        self.wmu = wmu
+        self.park_harvest = p_harv
+        self.park_name = p_name
+        self.permit = ''
         self.lst_checks = []
 
-class WildReportCheck:
+
+class TrapCheck:
     def __init__(self, trap_year: str='', harvest: str='', tl_type: str='', tl_num: str='', month: str='', 
-                 spec: str='', wmu: str='', ct_f: int=0, ct_m: int=0, ct_u: int=0, p_harv: str='No', 
-                 p_name: str='') -> None:
+                 spec: str='', ct_f: int=0, ct_m: int=0, ct_u: int=0,) -> None:
         self.trap_year = trap_year
         self.harvest = harvest
         self.trapline_type = tl_type
         self.trapline_number = tl_num
         self.month = month
         self.species = spec
-        self.wmu = wmu
         self.male_count = ct_m
         self.female_count = ct_f
         self.unknown_count = ct_u
-        self.park_harvest = p_harv
-        self.park_name = p_name
-        self.permit = ''
 
 
 
