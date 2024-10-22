@@ -1,31 +1,8 @@
-2024-10-21 17:17:17,329 - INFO - Connecting to map hub
-2024-10-21 17:17:18,431 - INFO - Connection successful
-2024-10-21 17:17:18,431 - INFO - Shifting any traps that indicated the coordinates should not be included
-2024-10-21 17:17:19,242 - INFO - Updating traps layer with most recent trap check status
-2024-10-21 17:17:30,274 - INFO - Renaming photos on the traps layer
-2024-10-21 17:17:48,972 - INFO - Renaming photos on the trap checks layer
-2024-10-21 17:18:12,378 - INFO - Renaming trapcheck_tr0330t006_t006_4_check-8_photo1.jpg to trapcheck_tr0330t006_t006_4_check-8_photo1.jpg
-2024-10-21 17:18:13,120 - INFO - Renaming trapcheck_tr0330t006_t006_4_check-8_photo2.jpg to trapcheck_tr0330t006_t006_4_check-8_photo2.jpg
-2024-10-21 17:18:13,629 - INFO - Renaming trapcheck_tr0330t006_t006_4_check-8_photo3.jpg to trapcheck_tr0330t006_t006_4_check-8_photo3.jpg
-2024-10-21 17:18:14,390 - INFO - Renaming trapcheck_tr0330t006_t006_4_check-8_photo4.jpg to trapcheck_tr0330t006_t006_4_check-8_photo4.jpg
-2024-10-21 17:18:14,924 - INFO - Renaming trapcheck_tr0330t006_t006_4_check-8_photo5.jpg to trapcheck_tr0330t006_t006_4_check-8_photo5.jpg
-2024-10-21 17:18:15,466 - INFO - Renaming trapcheck_tr0330t006_t006_4_check-8_photo6.jpg to trapcheck_tr0330t006_t006_4_check-8_photo6.jpg
-2024-10-21 17:18:15,911 - INFO - Renaming trapcheck_tr0330t006_t006_4_check-8_photo7.jpg to trapcheck_tr0330t006_t006_4_check-8_photo7.jpg
-2024-10-21 17:18:16,463 - INFO - Renaming trapcheck_tr0330t006_t006_4_check-8_photo8.jpg to trapcheck_tr0330t006_t006_4_check-8_photo8.jpg
-2024-10-21 17:18:16,937 - INFO - Renaming trapcheck_tr0330t006_t006_4_check-8_photo9.jpg to trapcheck_tr0330t006_t006_4_check-8_photo9.jpg
-2024-10-21 17:18:17,435 - INFO - Renaming trapcheck_tr0330t006_t006_4_check-8_photo10.jpg to trapcheck_tr0330t006_t006_4_check-8_photo10.jpg
-2024-10-21 17:18:18,099 - INFO - Renaming trapcheck_tr0330t006_t006_4_check-8_photo11.jpg to trapcheck_tr0330t006_t006_4_check-8_photo11.jpg
-2024-10-21 17:18:18,539 - INFO - Renaming trapcheck_tr0330t006_t006_4_check-8_photo12.jpg to trapcheck_tr0330t006_t006_4_check-8_photo12.jpg
-2024-10-21 17:18:19,070 - INFO - Renaming trapcheck_tr0330t006_t006_4_check-8_photo13.jpg to trapcheck_tr0330t006_t006_4_check-8_photo13.jpg
-2024-10-21 17:18:19,919 - INFO - Renaming trapcheck_tr0330t006_t006_4_check-8_photo14.jpg to trapcheck_tr0330t006_t006_4_check-8_photo14.jpg
-2024-10-21 17:18:20,560 - INFO - Renaming trapcheck_tr0330t006_t006_4_check-8_photo15.jpg to trapcheck_tr0330t006_t006_4_check-8_photo15.jpg
-2024-10-21 17:18:21,025 - INFO - Renaming trapcheck_tr0330t006_t006_4_check-8_photo16.jpg to trapcheck_tr0330t006_t006_4_check-8_photo16.jpg
-2024-10-21 17:18:23,952 - INFO - Updating photo names for 1 trap checks
-2024-10-21 17:18:24,257 - INFO - Renaming photos on the fisher layer
-2024-10-21 17:18:25,250 - INFO - Renaming fisher_visual_19_photo1.jpg to fisher_visual_19_photo1.jpg
-2024-10-21 17:18:25,605 - INFO - Renaming fisher_visual_19_photo2.jpg to fisher_visual_19_photo2.jpg
-2024-10-21 17:18:25,951 - INFO - Renaming fisher_visual_19_photo3.jpg to fisher_visual_19_photo3.jpg
-2024-10-21 17:18:26,442 - INFO - Renaming fisher_visual_19_photo4.jpg to fisher_visual_19_photo4.jpg
-2024-10-21 17:18:26,791 - INFO - Renaming fisher_visual_19_photo5.jpg to fisher_visual_19_photo5.jpg
-2024-10-21 17:18:30,448 - INFO - Updating photo names for 1 fisher
-2024-10-21 17:18:30,621 - INFO - Disconnecting from maphub
+2024-10-22 08:28:26,331 - INFO - Connecting to map hub
+2024-10-22 08:28:29,813 - INFO - Connection successful
+2024-10-22 08:28:29,813 - INFO - Shifting any traps that indicated the coordinates should not be included
+2024-10-22 08:28:31,285 - INFO - Updating traps layer with most recent trap check status
+2024-10-22 08:28:52,466 - INFO - Renaming photos on the traps layer
+2024-10-22 08:29:20,723 - INFO - Renaming photos on the trap checks layer
+2024-10-22 08:30:25,857 - INFO - Renaming photos on the fisher layer
+2024-10-22 08:30:38,233 - INFO - Disconnecting from maphub
