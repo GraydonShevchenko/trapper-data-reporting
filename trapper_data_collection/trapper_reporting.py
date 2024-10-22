@@ -198,15 +198,16 @@ class TrapReport:
             self.logger.info(f'Working on {set_id}')
 
             trap_checks = ago_flayer.query_related_records(object_ids=oid, relationship_id='0')
-            all_checks = trap_checks.features
-            if len(all_checks) == 0:
-                continue
+            self.logger.info(trap_checks)
+            # all_checks = trap_checks.features
+            # if len(all_checks) == 0:
+            #     continue
 
-            trapline_type = 'Registered Trapline' if trapline.lower() != 'unknown' else 'Private Property'
-            month = trap_sdf['CHECK_DATE'][index].strftime('%B')
+            # trapline_type = 'Registered Trapline' if trapline.lower() != 'unknown' else 'Private Property'
+            # month = trap_sdf['CHECK_DATE'][index].strftime('%B')
 
-            dict_wild[trapline].trapline = trapline
-            dict_wild[trapline].dict_traps[set_id].lst_checks.append(TrapCheck(tl_type=trapline_type, tl_num=trapline, month=month))
+            # dict_wild[trapline].trapline = trapline
+            # dict_wild[trapline].dict_traps[set_id].lst_checks.append(TrapCheck(tl_type=trapline_type, tl_num=trapline, month=month))
             
         self.logger.info(dict_wild)
     
