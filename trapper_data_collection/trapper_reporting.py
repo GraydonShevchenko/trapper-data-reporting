@@ -281,7 +281,7 @@ class TrapReport:
                     for cell in row:
                         cell.alignment = Alignment(wrap_text=True)
 
-            ostore_path = f'{self.bucket_prefix}/{os.path.basename(xl_file)}'
+            ostore_path = f'{self.bucket_prefix}/{xl_file}'
             self.logger.info('Uploading document to object storage')
             self.boto_resource.meta.client.upload_file(xl_file, self.trapper_bucket, ostore_path)
             
