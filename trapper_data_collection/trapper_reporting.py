@@ -231,6 +231,8 @@ class TrapReport:
                     m_count = 0 if sex != 'Male' else 1
                     f_count = 0 if sex != 'Female' else 1
                     u_count = 1 if sex == 'NA' and species else 0
+                    park_harvest = 'No'
+                    permit = ''
                     if park and harvest == 'Yes':
                         park_harvest = 'Yes'
                         park_name = park
