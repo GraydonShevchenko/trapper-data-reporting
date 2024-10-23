@@ -228,7 +228,7 @@ class TrapReport:
                     trapline_type = 'Registered Trapline' if trapline.lower() != 'unknown' else 'Private Property'
                     species = str(record['attributes']['SPECIES']).title()
                     comments = record['attributes']['CAPTURE_COMMENTS']
-                    species = species if species != 'NA' else None if species !='Other' else comments
+                    species = species if species != 'Na' else None if species !='Other' else comments
                     harvest = 'Yes' if species else 'No'
                     sex = record['attributes']['SEX']
                     m_count = 0 if sex != 'Male' else 1
