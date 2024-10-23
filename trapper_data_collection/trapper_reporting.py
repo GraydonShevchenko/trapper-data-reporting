@@ -210,7 +210,7 @@ class TrapReport:
                     month = dt.datetime.fromtimestamp(int(record['attributes']['CHECK_DATE'])/1000).strftime('%B')
                     trapline_type = 'Registered Trapline' if trapline.lower() != 'unknown' else 'Private Property'
                     species = record['attributes']['SPECIES']
-                    comments = record['attributes']['COMMENTS']
+                    comments = record['attributes']['CAPTURE_COMMENTS']
                     species = species if species != 'NA' else None if species !='Other' else comments
                     harvest = 'Yes' if species else 'No'
 
