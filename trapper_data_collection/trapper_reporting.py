@@ -233,6 +233,7 @@ class TrapReport:
                     u_count = 1 if sex == 'NA' and species else 0
                     park_harvest = 'No'
                     permit = ''
+                    park_name = ''
                     if park and harvest == 'Yes':
                         park_harvest = 'Yes'
                         park_name = park
