@@ -207,11 +207,15 @@ class TrapReport:
             for grp in rel_groups:
                 for record in grp['relatedRecords']:
                     self.logger.info(record)
-                    month = dt.datetime.fromtimestamp(record['attributes']['CHECK_DATE']).strftime('%B')
+                    month = dt.datetime.fromtimestamp(int(record['attributes']['CHECK_DATE'])/1000).strftime('%B')
                     trapline_type = 'Registered Trapline' if trapline.lower() != 'unknown' else 'Private Property'
+                    species = record['attributes']['SPECIES']
+                    comments = record['attributes']['COMMENTS']
+                    species = species if species != 'NA' else None if species !='Other' else comments
+                    harvest = 'Yes' if species else 'No'
 
-            dict_wild[trapline].dict_traps[set_id].lst_checks.append(TrapCheck(tl_type=trapline_type, 
-                                                                               tl_num=trapline, month=month))
+                    dict_wild[trapline].dict_traps[set_id].lst_checks.append(TrapCheck(tl_type=trapline_type, 
+                                                                               tl_num=trapline, month=month, spec=species, harvest=harvest))
             
         self.logger.info(dict_wild)
     
