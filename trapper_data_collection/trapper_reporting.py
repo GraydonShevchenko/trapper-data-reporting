@@ -226,7 +226,7 @@ class TrapReport:
                     trap_year = self.get_trap_season(trap_date=record['attributes']['CHECK_DATE'])
                     month = dt.datetime.fromtimestamp(int(record['attributes']['CHECK_DATE'])/1000).strftime('%B')
                     trapline_type = 'Registered Trapline' if trapline.lower() != 'unknown' else 'Private Property'
-                    species = record['attributes']['SPECIES']
+                    species = str(record['attributes']['SPECIES']).title()
                     comments = record['attributes']['CAPTURE_COMMENTS']
                     species = species if species != 'NA' else None if species !='Other' else comments
                     harvest = 'Yes' if species else 'No'
@@ -296,7 +296,7 @@ class TrapReport:
         for i in ago_sdf.index:
             val = ago_sdf[field][i]
             break
-        return val
+        return str(val).title()
     
     def get_trap_season(self, trap_date):
         date = dt.datetime.fromtimestamp(int(trap_date)/1000)
