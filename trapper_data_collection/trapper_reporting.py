@@ -195,7 +195,7 @@ class TrapReport:
             set_id = trap_sdf['SET_UNIQUE_ID'][index]
             trap_geom = trap_sdf['SHAPE'][index]
 
-            self.logger.info(f'Working on {set_id}')
+            self.logger.info(f'Getting info from {set_id}')
 
             trap_checks = ago_flayer.query_related_records(object_ids=oid, relationship_id='0')
             rel_groups = trap_checks['relatedRecordGroups']
@@ -216,11 +216,7 @@ class TrapReport:
 
             dict_wild[trapline].trapline = trapline
             dict_wild[trapline].dict_traps[set_id].wmu = wmu
-            if park:
-                dict_wild[trapline].dict_traps[set_id].park_harvest = 'Yes'
-                dict_wild[trapline].dict_traps[set_id].park_name = park
-                dict_wild[trapline].dict_traps[set_id].permit = 'FILL IN WITH PERMIT AUTHORIZATION NUMBER'
-
+            
             for grp in rel_groups:
                 for record in grp['relatedRecords']:
                     # self.logger.info(record)
@@ -235,9 +231,13 @@ class TrapReport:
                     m_count = 0 if sex != 'Male' else 1
                     f_count = 0 if sex != 'Female' else 1
                     u_count = 1 if sex == 'NA' and species else 0
+                    if park and harvest == 'Yes':
+                        park_harvest = 'Yes'
+                        park_name = park
+                        permit = 'FILL IN WITH PERMIT AUTHORIZATION NUMBER'
 
                     dict_wild[trapline].dict_traps[set_id].lst_checks.append(TrapCheck(tl_type=trapline_type, 
-                                                                               tl_num=trapline, month=month, spec=species, harvest=harvest, ct_m=m_count, ct_f=f_count, ct_u=u_count, trap_year=trap_year))
+                                                                               tl_num=trapline, month=month, spec=species, harvest=harvest, ct_m=m_count, ct_f=f_count, ct_u=u_count, trap_year=trap_year, p_harv=park_harvest, p_name=park_name, permit=permit))
         
         try:
             os.makedirs('wild_reports')
@@ -248,31 +248,36 @@ class TrapReport:
                    'Park Name', 'PERMITAUTHORIZATIONNUMBER']
         
         for trapline in sorted(dict_wild.keys()):
-            xl_file = os.path.join('wild_reports', f'{trapline}.xlsx')
+            self.logger.info(f'Creating report for {trapline}')
+            xl_file = os.path.join('wild_reports', f'{trapline.lower()}_wild_report.xlsx')
             lst_traps = []
             for trapset_id in sorted(dict_wild[trapline].dict_traps.keys()):
                 trapset = dict_wild[trapline].dict_traps[trapset_id]
                 for trap_check in trapset.lst_checks:
                     lst_traps.append([trap_check.trap_year, trap_check.harvest, trap_check.trapline_type, trapline, 
-                                      trap_check.month, trap_check.species, trapset.wmu, trap_check.male_count, trap_check.female_count, trap_check.unknown_count, trapset.park_harvest, trapset.park_name, trapset.permit])
+                                      trap_check.month, trap_check.species, trapset.wmu, trap_check.male_count, trap_check.female_count, trap_check.unknown_count, trap_check.park_harvest, trap_check.park_name, trap_check.permit])
             
             df = pd.DataFrame(data=lst_traps, columns=columns)
             sheet_name = trapline
             with pd.ExcelWriter(xl_file, date_format='yyyy-mm-dd', datetime_format='yyyy-mm-dd') as xl_writer:
                 df.to_excel(xl_writer, sheet_name=sheet_name, index=False)
-    
+
                 ws = xl_writer.sheets[sheet_name]
-    
+
                 dim_holder = DimensionHolder(worksheet=ws)
-    
+
                 for col in range(ws.min_column, ws.max_column + 1):
                     dim_holder[get_column_letter(col)] = ColumnDimension(ws, min=col, max=col, width=20)
-    
+
                     ws.column_dimensions = dim_holder
-    
+
                 for row in ws.iter_rows():
                     for cell in row:
                         cell.alignment = Alignment(wrap_text=True)
+
+            ostore_path = f'{self.bucket_prefix}/{os.path.basename(xl_file)}'
+            self.logger.info('Uploading document to object storage')
+            self.boto_resource.meta.client.upload_file(xl_file, self.trapper_bucket, ostore_path)
             
     
     def find_intersect(self, trap_geom, ago_item_id, field):
@@ -357,17 +362,16 @@ class Trapline:
         self.dict_traps = defaultdict(Trapset)
         
 class Trapset:
-    def __init__(self, wmu: str='', p_harv: str='No', p_name: str='', permit: str='') -> None:
+    def __init__(self, wmu: str='') -> None:
         self.wmu = wmu
-        self.park_harvest = p_harv
-        self.park_name = p_name
-        self.permit = ''
+        
         self.lst_checks = []
 
 
 class TrapCheck:
     def __init__(self, trap_year: str='', harvest: str='', tl_type: str='', tl_num: str='', month: str='', 
-                 spec: str='', ct_f: int=0, ct_m: int=0, ct_u: int=0,) -> None:
+                 spec: str='', ct_f: int=0, ct_m: int=0, ct_u: int=0, p_harv: str='No', p_name: str='', 
+                 permit: str='') -> None:
         self.trap_year = trap_year
         self.harvest = harvest
         self.trapline_type = tl_type
@@ -377,7 +381,9 @@ class TrapCheck:
         self.male_count = ct_m
         self.female_count = ct_f
         self.unknown_count = ct_u
-
+        self.park_harvest = p_harv
+        self.park_name = p_name
+        self.permit = permit
 
 
 def get_col_widths(dataframe):
