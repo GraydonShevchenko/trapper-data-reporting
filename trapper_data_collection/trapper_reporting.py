@@ -7,6 +7,7 @@ from openpyxl.worksheet.dimensions import ColumnDimension, DimensionHolder
 from openpyxl.utils import get_column_letter
 from openpyxl.styles import Alignment
 from arcgis.gis import GIS
+from arcgis.geometry import filters
 from argparse import ArgumentParser
 from collections import defaultdict
 import logging
@@ -178,13 +179,11 @@ class TrapReport:
         self.logger.info('Creating WILD report')
 
         dict_wild = defaultdict(Trapline)
-
         ago_item = self.gis.content.get(self.ago_traps)
         ago_flayer = ago_item.layers[0]
 
         trap_fset = ago_flayer.query()
-        all_features = trap_fset.features
-        if len(all_features) == 0:
+        if len(trap_fset.features) == 0:
             return
 
         trap_sdf = trap_fset.sdf
@@ -194,6 +193,7 @@ class TrapReport:
             oid = trap_sdf['OBJECTID'][index]
             trapline = trap_sdf['TRAPLINE_ID'][index]
             set_id = trap_sdf['SET_UNIQUE_ID'][index]
+            trap_geom = trap_sdf['SHAPE'][index]
 
             self.logger.info(f'Working on {set_id}')
 
@@ -202,23 +202,102 @@ class TrapReport:
             if not rel_groups:
                 continue
 
+            wmu = self.find_intersect(trap_geom=trap_geom, ago_item_id=self.ago_wmu, field='WILDLIFE_MGMT_UNIT_ID')
+
+            if wmu:
+                wmu_split = wmu.split('-')
+                wmu_sub = wmu_split[1]
+                wmu_sub = wmu_sub if len(wmu_sub) == 2 else f'0{wmu_sub}'
+                wmu = f'{wmu_split[0]}{wmu_sub}'
+
+            park = self.find_intersect(trap_geom=trap_geom, ago_item_id=self.ago_parks, field='PROTECTED_LANDS_NAME')
+
+
+
             dict_wild[trapline].trapline = trapline
+            dict_wild[trapline].dict_traps[set_id].wmu = wmu
+            if park:
+                dict_wild[trapline].dict_traps[set_id].park_harvest = 'Yes'
+                dict_wild[trapline].dict_traps[set_id].park_name = park
+                dict_wild[trapline].dict_traps[set_id].permit = 'FILL IN WITH PERMIT AUTHORIZATION NUMBER'
 
             for grp in rel_groups:
                 for record in grp['relatedRecords']:
-                    self.logger.info(record)
+                    # self.logger.info(record)
+                    trap_year = self.get_trap_season(trap_date=record['attributes']['CHECK_DATE'])
                     month = dt.datetime.fromtimestamp(int(record['attributes']['CHECK_DATE'])/1000).strftime('%B')
                     trapline_type = 'Registered Trapline' if trapline.lower() != 'unknown' else 'Private Property'
                     species = record['attributes']['SPECIES']
                     comments = record['attributes']['CAPTURE_COMMENTS']
                     species = species if species != 'NA' else None if species !='Other' else comments
                     harvest = 'Yes' if species else 'No'
+                    sex = record['attributes']['SEX']
+                    m_count = 0 if sex != 'Male' else 1
+                    f_count = 0 if sex != 'Female' else 1
+                    u_count = 1 if sex == 'NA' and species else 0
 
                     dict_wild[trapline].dict_traps[set_id].lst_checks.append(TrapCheck(tl_type=trapline_type, 
-                                                                               tl_num=trapline, month=month, spec=species, harvest=harvest))
+                                                                               tl_num=trapline, month=month, spec=species, harvest=harvest, ct_m=m_count, ct_f=f_count, ct_u=u_count, trap_year=trap_year))
+        
+        try:
+            os.makedirs('wild_reports')
+        except:
+            pass
+        columns = ['Trapping Licence Year', 'Did Harvest Occur?', 'Trapline Type', 'Trapline Number', 'Month', 
+                   'Species', 'WMU', 'Male Count', 'Female Count', 'Unknown Sex Count', 'Harvest in Park?', 
+                   'Park Name', 'PERMITAUTHORIZATIONNUMBER']
+        
+        for trapline in sorted(dict_wild.keys()):
+            xl_file = os.path.join('wild_reports', f'{trapline}.xlsx')
+            lst_traps = []
+            for trapset_id in sorted(dict_wild[trapline].dict_traps.keys()):
+                trapset = dict_wild[trapline].dict_traps[trapset_id]
+                for trap_check in trapset.lst_checks:
+                    lst_traps.append([trap_check.trap_year, trap_check.harvest, trap_check.trapline_type, trapline, 
+                                      trap_check.month, trap_check.species, trapset.wmu, trap_check.male_count, trap_check.female_count, trap_check.unknown_count, trapset.park_harvest, trapset.park_name, trapset.permit])
             
-        self.logger.info(dict_wild)
+            df = pd.DataFrame(data=lst_traps, columns=columns)
+            sheet_name = trapline
+            with pd.ExcelWriter(xl_file, date_format='yyyy-mm-dd', datetime_format='yyyy-mm-dd') as xl_writer:
+                df.to_excel(xl_writer, sheet_name=sheet_name, index=False)
     
+                ws = xl_writer.sheets[sheet_name]
+    
+                dim_holder = DimensionHolder(worksheet=ws)
+    
+                for col in range(ws.min_column, ws.max_column + 1):
+                    dim_holder[get_column_letter(col)] = ColumnDimension(ws, min=col, max=col, width=20)
+    
+                    ws.column_dimensions = dim_holder
+    
+                for row in ws.iter_rows():
+                    for cell in row:
+                        cell.alignment = Alignment(wrap_text=True)
+            
+    
+    def find_intersect(self, trap_geom, ago_item_id, field):
+        ago_item = self.gis.content.get(ago_item_id)
+        ago_flayer = ago_item.layers[0]
+        ago_feat = ago_flayer.query(where='1=1', geometry_filter=filters.intersects(trap_geom))
+        if len(ago_feat.features) == 0:
+            return None
+        ago_sdf = ago_feat.sdf
+        for i in ago_sdf.index:
+            val = ago_sdf[field][i]
+            break
+        return val
+    
+    def get_trap_season(self, trap_date):
+        date = dt.datetime.fromtimestamp(int(trap_date)/1000)
+        mnth = date.month
+        year = date.year
+
+        if mnth >= 11:
+            season = f'{year}/{str(year + 1)[-2:]}'
+        else:
+            season = f'{year-1}/{str(year)[-2:]}'
+
+        return season
 
     def create_excel(self) -> None:
         self.logger.info('Creating report')
@@ -278,8 +357,7 @@ class Trapline:
         self.dict_traps = defaultdict(Trapset)
         
 class Trapset:
-    def __init__(self, wmu: str='', p_harv: str='', p_name: str='') -> None:
-        self.point_geom = None
+    def __init__(self, wmu: str='', p_harv: str='No', p_name: str='', permit: str='') -> None:
         self.wmu = wmu
         self.park_harvest = p_harv
         self.park_name = p_name
