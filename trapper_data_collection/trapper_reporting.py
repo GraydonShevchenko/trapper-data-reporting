@@ -19,14 +19,17 @@ import trap_config
 
 def run_app():
     ago_user, ago_pass, obj_store_user, obj_store_secret, obj_store_host, logger = get_input_parameters()
-    report = TrapReport(ago_user=ago_user, ago_pass=ago_pass, obj_store_user=obj_store_user, 
-                       obj_store_secret=obj_store_secret, obj_store_host=obj_store_host, logger=logger)
-    
-    report.download_attachments()
-    report.create_excel()
-    report.create_wild_report()
+    try:
+        report = TrapReport(ago_user=ago_user, ago_pass=ago_pass, obj_store_user=obj_store_user, 
+                           obj_store_secret=obj_store_secret, obj_store_host=obj_store_host, logger=logger)
 
-    del report
+        report.download_attachments()
+        report.create_excel()
+        report.create_wild_report()
+
+        del report
+    except Exception as e:
+        logger.exception('There was an exception')
 
 
 def get_input_parameters():

@@ -13,12 +13,15 @@ import trap_config
 
 def run_app():
     ago_user, ago_pass, logger = get_input_parameters()
-    traps = Traps(ago_user=ago_user, ago_pass=ago_pass, logger=logger)
-    traps.shift_traps()
-    traps.update_trap_status()
-    traps.update_attachments()
+    try:
+        traps = Traps(ago_user=ago_user, ago_pass=ago_pass, logger=logger)
+        traps.shift_traps()
+        traps.update_trap_status()
+        traps.update_attachments()
 
-    del traps
+        del traps
+    except Exception as e:
+        logger.exception('There was an exception')
 
 
 def get_input_parameters():

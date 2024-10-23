@@ -46,7 +46,7 @@ class Environment:
         log_file_base_name = os.path.basename(sys.argv[0])
         log_file_extension = 'txt'
         timestamp = dt.now().strftime('%Y-%m-%d_%H-%M-%S')
-        log_file = 'script_log.txt'
+        log_file = f'{log_file_base_name.replace('.py','')}_log.txt'
 
         logger.setLevel(args.log_level)
 
