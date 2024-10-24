@@ -1,0 +1,8 @@
+2024-10-24 08:28:25,096 - INFO - Connecting to map hub
+2024-10-24 08:28:26,197 - INFO - Connection successful
+2024-10-24 08:28:26,198 - INFO - Shifting any traps that indicated the coordinates should not be included
+2024-10-24 08:28:27,148 - INFO - Updating traps layer with most recent trap check status
+2024-10-24 08:28:37,980 - INFO - Renaming photos on the traps layer
+2024-10-24 08:28:51,639 - INFO - Renaming photos on the trap checks layer
+2024-10-24 08:29:15,877 - INFO - Renaming photos on the fisher layer
+2024-10-24 08:29:19,908 - INFO - Disconnecting from maphub
