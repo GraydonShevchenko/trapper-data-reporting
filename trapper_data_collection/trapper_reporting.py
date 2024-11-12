@@ -236,6 +236,8 @@ class TrapReport:
                         permit = 'FILL IN WITH PERMIT AUTHORIZATION NUMBER'
 
                     dict_wild[trap_year].dict_trapline[trapline].trapline_type = trapline_type
+                    if dict_wild[trap_year].dict_trapline[trapline].harvest == 'No':
+                        dict_wild[trap_year].dict_trapline[trapline].harvest = harvest
                     dict_wild[trap_year].dict_trapline[trapline].dict_month[month].dict_wmu[wmu] \
                             .dict_park[park].park_harvest = park_harvest
                     dict_wild[trap_year].dict_trapline[trapline].dict_month[month].dict_wmu[wmu] \
@@ -263,10 +265,13 @@ class TrapReport:
             for trapline in sorted(dict_wild[trapyear].dict_trapline.keys()):
                 self.logger.info(f'Creating report for {trapline}')
                 xl_file = os.path.join(out_dir, f'{trapline.lower()}_wild_report.xlsx')
-                lst_traps = dict_wild[trapyear].get_list(trapline=trapline)
-
+                lst_traps = []
+                lst_trapline = dict_wild[trapyear].get_list(trapline=trapline)
+                for trap in lst_trapline:
+                    lst_traps.append([trapyear] + trap)
                 df = pd.DataFrame(data=lst_traps, columns=columns)
                 sheet_name = trapline
+                self.logger.info(lst_traps)
                 with pd.ExcelWriter(xl_file, date_format='yyyy-mm-dd', datetime_format='yyyy-mm-dd') as xl_writer:
                     df.to_excel(xl_writer, sheet_name=sheet_name, index=False)
 
@@ -305,7 +310,7 @@ class TrapReport:
         mnth = date.month
         year = date.year
 
-        if mnth >= 11:
+        if mnth >= 7:
             season = f'{year}/{str(year + 1)[-2:]}'
         else:
             season = f'{year-1}/{str(year)[-2:]}'
@@ -369,13 +374,14 @@ class TrapYear:
     def get_list(self, trapline) -> list:
         lst_traplines = []
         for lst_month in self.dict_trapline[trapline].get_list():
-            lst_traplines.append([trapline, self.dict_trapline[trapline].trapline_type] + lst_month)
+            lst_traplines.append([self.dict_trapline[trapline].harvest, self.dict_trapline[trapline].trapline_type, trapline] + lst_month)
 
         return lst_traplines
 
     class Trapline:
         def __init__(self) -> None:
             self.trapline_type = ''
+            self.harvest = 'No'
             self.dict_month = defaultdict(self.Month)
         
         def get_list(self) -> list:
