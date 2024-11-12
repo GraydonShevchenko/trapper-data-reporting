@@ -269,9 +269,10 @@ class TrapReport:
                 lst_trapline = dict_wild[trapyear].get_list(trapline=trapline)
                 for trap in lst_trapline:
                     lst_traps.append([trapyear] + trap)
+                self.logger.info(lst_traps)    
                 df = pd.DataFrame(data=lst_traps, columns=columns)
                 sheet_name = trapline
-                self.logger.info(lst_traps)
+                
                 with pd.ExcelWriter(xl_file, date_format='yyyy-mm-dd', datetime_format='yyyy-mm-dd') as xl_writer:
                     df.to_excel(xl_writer, sheet_name=sheet_name, index=False)
 
