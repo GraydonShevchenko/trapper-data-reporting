@@ -414,8 +414,8 @@ class TrapYear:
                     def get_list(self) -> list:
                         lst_species = []
                         for species in self.dict_species:
-                            for count in self.dict_species[species].get_list():
-                                lst_species.append([species] + count)
+                            for lst_count in self.dict_species[species].get_list():
+                                lst_species.append([species] + [lst_count])
                         return lst_species
                     
                     class Species:
