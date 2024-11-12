@@ -260,7 +260,7 @@ class TrapReport:
             except:
                 pass
             self.logger.info(f'Working on trap year: {trapyear}')
-            for trapline in sorted(dict_wild[trapyear].keys()):
+            for trapline in sorted(dict_wild[trapyear].dict_trapline.keys()):
                 self.logger.info(f'Creating report for {trapline}')
                 xl_file = os.path.join(out_dir, f'{trapline.lower()}_wild_report.xlsx')
                 lst_traps = dict_wild[trapyear].get_list(trapline=trapline)
