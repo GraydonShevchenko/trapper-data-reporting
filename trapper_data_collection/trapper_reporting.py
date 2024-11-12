@@ -390,7 +390,7 @@ class TrapYear:
                 lst_wmu = []
                 for wmu in self.dict_wmu:
                     for lst_park in self.dict_wmu[wmu].get_list():
-                        lst_wmu.append(lst_park[0] + [wmu] + lst_park[1:])
+                        lst_wmu.append([lst_park[0]] + [wmu] + lst_park[1:])
 
 
             class WMU:
