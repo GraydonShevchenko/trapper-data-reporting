@@ -371,6 +371,8 @@ class TrapYear:
         for lst_month in self.dict_trapline[trapline].get_list():
             lst_traplines.append([trapline, self.dict_trapline[trapline].trapline_type] + lst_month)
 
+        return lst_traplines
+
     class Trapline:
         def __init__(self) -> None:
             self.trapline_type = ''
@@ -382,6 +384,8 @@ class TrapYear:
                 for lst_wmu in self.dict_month[month].get_list():
                     lst_month.append([month] + lst_wmu)
 
+            return lst_month
+
         class Month:
             def __init__(self) -> None:
                 self.dict_wmu = defaultdict(self.WMU)
@@ -391,6 +395,7 @@ class TrapYear:
                 for wmu in self.dict_wmu:
                     for lst_park in self.dict_wmu[wmu].get_list():
                         lst_wmu.append([lst_park[0]] + [wmu] + lst_park[1:])
+                return lst_wmu
 
 
             class WMU:
