@@ -181,7 +181,7 @@ class TrapReport:
     def create_wild_report(self) -> None:
         self.logger.info('Creating WILD report')
 
-        dict_wild = defaultdict(Trapline)
+        dict_wild = defaultdict(TrapYear)
         ago_item = self.gis.content.get(self.ago_traps)
         ago_flayer = ago_item.layers[0]
 
@@ -214,11 +214,6 @@ class TrapReport:
                 wmu = f'{wmu_split[0]}{wmu_sub}'
 
             park = self.find_intersect(trap_geom=trap_geom, ago_item_id=self.ago_parks, field='PROTECTED_LANDS_NAME')
-
-
-
-            dict_wild[trapline].trapline = trapline
-            dict_wild[trapline].dict_traps[set_id].wmu = wmu
             
             for grp in rel_groups:
                 for record in grp['relatedRecords']:
@@ -228,7 +223,7 @@ class TrapReport:
                     trapline_type = 'Registered Trapline' if trapline.lower() != 'unknown' else 'Private Property'
                     species = str(record['attributes']['SPECIES']).title()
                     comments = record['attributes']['CAPTURE_COMMENTS']
-                    species = species if species != 'Na' else None if species !='Other' else comments
+                    species = None if species == 'Na' else species if species !='Other' else comments
                     harvest = 'Yes' if species else 'No'
                     sex = record['attributes']['SEX']
                     m_count = 0 if sex != 'Male' else 1
@@ -242,48 +237,57 @@ class TrapReport:
                         park_name = park
                         permit = 'FILL IN WITH PERMIT AUTHORIZATION NUMBER'
 
-                    dict_wild[trapline].dict_traps[set_id].lst_checks.append(TrapCheck(tl_type=trapline_type, 
-                                                                               tl_num=trapline, month=month, spec=species, harvest=harvest, ct_m=m_count, ct_f=f_count, ct_u=u_count, trap_year=trap_year, p_harv=park_harvest, p_name=park_name, permit=permit))
+                    dict_wild[trap_year].dict_trapline[trapline].trapline_type = trapline_type
+                    dict_wild[trap_year].dict_trapline[trapline].dict_month[month].dict_wmu[wmu] \
+                            .dict_park[park].park_harvest = park_harvest
+                    dict_wild[trap_year].dict_trapline[trapline].dict_month[month].dict_wmu[wmu] \
+                            .dict_park[park].permit = permit
+                    dict_wild[trap_year].dict_trapline[trapline].dict_month[month].dict_wmu[wmu] \
+                            .dict_park[park].dict_species[species].female_count += f_count
+                    dict_wild[trap_year].dict_trapline[trapline].dict_month[month].dict_wmu[wmu] \
+                            .dict_park[park].dict_species[species].male_count += m_count
+                    dict_wild[trap_year].dict_trapline[trapline].dict_month[month].dict_wmu[wmu] \
+                            .dict_park[park].dict_species[species].unknown_count += u_count
+
+
         
-        try:
-            os.makedirs('wild_reports')
-        except:
-            pass
+        
         columns = ['Trapping Licence Year', 'Did Harvest Occur?', 'Trapline Type', 'Trapline Number', 'Month', 
                    'Species', 'WMU', 'Male Count', 'Female Count', 'Unknown Sex Count', 'Harvest in Park?', 
                    'Park Name', 'PERMITAUTHORIZATIONNUMBER']
-        
-        for trapline in sorted(dict_wild.keys()):
-            self.logger.info(f'Creating report for {trapline}')
-            xl_file = os.path.join('wild_reports', f'{trapline.lower()}_wild_report.xlsx')
-            lst_traps = []
-            for trapset_id in sorted(dict_wild[trapline].dict_traps.keys()):
-                trapset = dict_wild[trapline].dict_traps[trapset_id]
-                for trap_check in trapset.lst_checks:
-                    lst_traps.append([trap_check.trap_year, trap_check.harvest, trap_check.trapline_type, trapline, 
-                                      trap_check.month, trap_check.species, trapset.wmu, trap_check.male_count, trap_check.female_count, trap_check.unknown_count, trap_check.park_harvest, trap_check.park_name, trap_check.permit])
-            
-            df = pd.DataFrame(data=lst_traps, columns=columns)
-            sheet_name = trapline
-            with pd.ExcelWriter(xl_file, date_format='yyyy-mm-dd', datetime_format='yyyy-mm-dd') as xl_writer:
-                df.to_excel(xl_writer, sheet_name=sheet_name, index=False)
+        for trapyear in sorted(dict_wild.keys()):
+            out_dir = os.path.join('wild_reports', trapyear.replace('/', '_'))
+            try:
+                os.makedirs(out_dir)
+            except:
+                pass
+            self.logger.info(f'Working on trap year: {trapyear}')
+            for trapline in sorted(dict_wild[trapyear].keys()):
+                self.logger.info(f'Creating report for {trapline}')
+                xl_file = os.path.join(out_dir, f'{trapline.lower()}_wild_report.xlsx')
+                lst_traps = dict_wild[trapyear].get_list(trapline=trapline)
 
-                ws = xl_writer.sheets[sheet_name]
+                df = pd.DataFrame(data=lst_traps, columns=columns)
+                sheet_name = trapline
+                with pd.ExcelWriter(xl_file, date_format='yyyy-mm-dd', datetime_format='yyyy-mm-dd') as xl_writer:
+                    df.to_excel(xl_writer, sheet_name=sheet_name, index=False)
 
-                dim_holder = DimensionHolder(worksheet=ws)
+                    ws = xl_writer.sheets[sheet_name]
 
-                for col in range(ws.min_column, ws.max_column + 1):
-                    dim_holder[get_column_letter(col)] = ColumnDimension(ws, min=col, max=col, width=20)
+                    dim_holder = DimensionHolder(worksheet=ws)
 
-                    ws.column_dimensions = dim_holder
+                    for col in range(ws.min_column, ws.max_column + 1):
+                        dim_holder[get_column_letter(col)] = ColumnDimension(ws, min=col, max=col, width=20)
 
-                for row in ws.iter_rows():
-                    for cell in row:
-                        cell.alignment = Alignment(wrap_text=True)
+                        ws.column_dimensions = dim_holder
 
-            ostore_path = f'{self.bucket_prefix}/{xl_file}'
-            self.logger.info('Uploading document to object storage')
-            self.boto_resource.meta.client.upload_file(xl_file, self.trapper_bucket, ostore_path)
+                    for row in ws.iter_rows():
+                        for cell in row:
+                            cell.alignment = Alignment(wrap_text=True)
+
+                ostore_path = f'{self.bucket_prefix}/{xl_file}'
+                self.logger.info('Uploading document to object storage')
+                self.boto_resource.meta.client.upload_file(xl_file, self.trapper_bucket, ostore_path)
             
     
     def find_intersect(self, trap_geom, ago_item_id, field):
@@ -360,18 +364,72 @@ class TrapReport:
 
         
 
-
-
-class Trapline:
+class TrapYear:
     def __init__(self) -> None:
-        self.trapline = ''
-        self.dict_traps = defaultdict(Trapset)
+        self.dict_trapline = defaultdict(self.Trapline)
+
+    def get_list(self, trapline) -> list:
+        lst_traplines = []
+        for lst_month in self.dict_trapline[trapline].get_list():
+            lst_traplines.append([trapline, self.dict_trapline[trapline].trapline_type] + lst_month)
+
+    class Trapline:
+        def __init__(self) -> None:
+            self.trapline_type = ''
+            self.dict_month = defaultdict(self.Month)
         
-class Trapset:
-    def __init__(self, wmu: str='') -> None:
-        self.wmu = wmu
-        
-        self.lst_checks = []
+        def get_list(self) -> list:
+            lst_month = []
+            for month in self.dict_month:
+                for lst_wmu in self.dict_month[month].get_list():
+                    lst_month.append([month] + lst_wmu)
+
+        class Month:
+            def __init__(self) -> None:
+                self.dict_wmu = defaultdict(self.WMU)
+            
+            def get_list(self) -> list:
+                lst_wmu = []
+                for wmu in self.dict_wmu:
+                    for lst_park in self.dict_wmu[wmu].get_list():
+                        lst_wmu.append(lst_park[0] + [wmu] + lst_park[1:])
+
+
+            class WMU:
+                def __init__(self) -> None:
+                    self.dict_park = defaultdict(self.Park)
+                
+                def get_list(self) -> list:
+                    lst_park = []
+                    for park in self.dict_park:
+                        for lst_species in self.dict_park[park].get_list():
+                            lst_park.append(lst_species + [self.dict_park[park].park_harvest, park, 
+                                        self.dict_park[park].permit])
+                    return lst_park
+
+                class Park:
+                    def __init__(self) -> None:
+                        self.park_harvest = ''
+                        self.permit = ''
+                        self.dict_species = defaultdict(self.Species)
+                    
+                    def get_list(self) -> list:
+                        lst_species = []
+                        for species in self.dict_species:
+                            for count in self.dict_species[species].get_list():
+                                lst_species.append([species] + count)
+                        return lst_species
+                    
+                    class Species:
+                        def __init__(self) -> None:
+                            self.male_count = 0
+                            self.female_count = 0
+                            self.unknown_count = 0
+
+                        def get_list(self) -> list:
+                            return [self.male_count, self.female_count, self.unknown_count]
+
+
 
 
 class TrapCheck:
