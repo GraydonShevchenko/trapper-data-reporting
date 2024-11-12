@@ -1,145 +1,156 @@
-2024-11-12 21:50:10,886 - INFO - Connecting to map hub
-2024-11-12 21:50:14,425 - INFO - Connection successful
-2024-11-12 21:50:14,425 - INFO - Connecting to object storage
-2024-11-12 21:51:02,139 - INFO - Downloading photos on the traps layer
-2024-11-12 21:51:32,512 - INFO - Downloading photos on the trap checks layer
-2024-11-12 21:52:40,722 - INFO - Downloading photos on the fisher layer
-2024-11-12 21:52:54,294 - INFO - Creating report
-2024-11-12 21:52:54,296 - INFO - Generating traps sheet
-2024-11-12 21:52:56,073 - INFO - Generating trap checks sheet
-2024-11-12 21:52:57,516 - INFO - Generating fisher sheet
-2024-11-12 21:52:58,281 - INFO - Uploading document to object storage
-2024-11-12 21:52:58,430 - INFO - Creating WILD report
-2024-11-12 21:52:59,810 - INFO - Getting info from TR0331T005_T005_1
-2024-11-12 21:53:01,587 - INFO - Getting info from TR0331T005_T005_2
-2024-11-12 21:53:03,046 - INFO - Getting info from TR0331T005_T005_3
-2024-11-12 21:53:04,541 - INFO - Getting info from TR0331T005_T005_4
-2024-11-12 21:53:05,722 - INFO - Getting info from TR0331T005_T005_5
-2024-11-12 21:53:06,967 - INFO - Getting info from TR0331T005_T005_6
-2024-11-12 21:53:08,338 - INFO - Getting info from TR0331T005_T005_7
-2024-11-12 21:53:09,506 - INFO - Getting info from TR0331T005_T005_8
-2024-11-12 21:53:10,691 - INFO - Getting info from TR0331T005_T005_9
-2024-11-12 21:53:11,839 - INFO - Getting info from TR0331T005_T005_10
-2024-11-12 21:53:13,052 - INFO - Getting info from TR0331T005_T005_11
-2024-11-12 21:53:14,200 - INFO - Getting info from TR0331T005_T005_12
-2024-11-12 21:53:15,450 - INFO - Getting info from TR0331T005_T005_13
-2024-11-12 21:53:16,759 - INFO - Getting info from TR0331T005_T005_14
-2024-11-12 21:53:17,941 - INFO - Getting info from TR0331T005_T005_18
-2024-11-12 21:53:19,197 - INFO - Getting info from TR0331T005_T005_15
-2024-11-12 21:53:20,338 - INFO - Getting info from TR0331T005_T005_16
-2024-11-12 21:53:21,498 - INFO - Getting info from TR0331T005_T005_17
-2024-11-12 21:53:22,917 - INFO - Getting info from TR0330T006_T006_1
-2024-11-12 21:53:24,148 - INFO - Getting info from TR0330T006_T006_2
-2024-11-12 21:53:25,368 - INFO - Getting info from TR0330T006_T006_3
-2024-11-12 21:53:26,546 - INFO - Getting info from TR0330T006_T006_4
-2024-11-12 21:53:27,754 - INFO - Getting info from TR0330T006_T006_5
-2024-11-12 21:53:29,133 - INFO - Getting info from TR0330T006_T006_6
-2024-11-12 21:53:30,289 - INFO - Getting info from TR0712T012_T012_1
-2024-11-12 21:53:31,499 - INFO - Getting info from TR0712T012_T012_2
-2024-11-12 21:53:32,926 - INFO - Getting info from TR0712T012_T012_3
-2024-11-12 21:53:34,606 - INFO - Getting info from TR0712T010_T010_1
-2024-11-12 21:53:36,632 - INFO - Getting info from TR0712T010_T010_2
-2024-11-12 21:53:38,368 - INFO - Getting info from TR0712T012_T012_4
-2024-11-12 21:53:38,840 - INFO - Getting info from TR0712T012_T012_5
-2024-11-12 21:53:39,116 - INFO - Getting info from TR0317T005_T005_1
-2024-11-12 21:53:39,344 - INFO - Getting info from TR0714T005_T005_1
-2024-11-12 21:53:40,810 - INFO - Getting info from TR0714T005_T005_2
-2024-11-12 21:53:42,328 - INFO - Getting info from TR0714T005_T005_3
-2024-11-12 21:53:43,778 - INFO - Getting info from TR0515T003_T003_1
-2024-11-12 21:53:45,398 - INFO - Getting info from TR0515T003_T003_2
-2024-11-12 21:53:47,168 - INFO - Getting info from TR0715T013_T013_1
-2024-11-12 21:53:48,814 - INFO - Getting info from TR0515T003_T003_3
-2024-11-12 21:53:49,071 - INFO - Getting info from TR0515T003_T003_4
-2024-11-12 21:53:49,589 - INFO - Getting info from TR0715T013_T013_2
-2024-11-12 21:53:49,874 - INFO - Getting info from TR0331T002_T002_1
-2024-11-12 21:53:50,146 - INFO - Getting info from TR0331T002_T002_2
-2024-11-12 21:53:50,462 - INFO - Getting info from TR0331T002_T002_3
-2024-11-12 21:53:50,673 - INFO - Getting info from TR0331T002_T002_4
-2024-11-12 21:53:50,945 - INFO - Getting info from TR0331T002_T002_5
-2024-11-12 21:53:51,256 - INFO - Getting info from TR0331T002_T002_6
-2024-11-12 21:53:51,672 - INFO - Getting info from TR0712T010_T010_3
-2024-11-12 21:53:52,898 - INFO - Getting info from TR0712T010_T010_4
-2024-11-12 21:53:54,261 - INFO - Getting info from TR0712T010_T010_5
-2024-11-12 21:53:55,673 - INFO - Getting info from TR0712T010_T010_6
-2024-11-12 21:53:57,060 - INFO - Getting info from TR0712T009_T009_1
-2024-11-12 21:53:58,665 - INFO - Getting info from TR0712T012_T012_6
-2024-11-12 21:54:00,061 - INFO - Getting info from TR0712T012_T012_7
-2024-11-12 21:54:01,292 - INFO - Getting info from TR0712T012_T012_8
-2024-11-12 21:54:02,682 - INFO - Getting info from TR0712T012_T012_9
-2024-11-12 21:54:03,009 - INFO - Getting info from TR0712T012_T012_10
-2024-11-12 21:54:04,524 - INFO - Getting info from TR0712T012_T012_11
-2024-11-12 21:54:06,347 - INFO - Getting info from TR0712T012_T012_12
-2024-11-12 21:54:08,128 - INFO - Getting info from TR0712T012_T012_13
-2024-11-12 21:54:09,314 - INFO - Getting info from TR0515T019_T019_1
-2024-11-12 21:54:09,552 - INFO - Getting info from TR0502T054_T054_1
-2024-11-12 21:54:09,798 - INFO - Getting info from TR0515T019_T019_2
-2024-11-12 21:54:10,292 - INFO - Getting info from TR0331T005_T005_19
-2024-11-12 21:54:11,883 - INFO - Getting info from TR0331T002_T002_7
-2024-11-12 21:54:12,409 - INFO - Getting info from TR0331T002_T002_8
-2024-11-12 21:54:12,583 - INFO - Getting info from TR0331T002_T002_9
-2024-11-12 21:54:12,853 - INFO - Getting info from TR0331T005_T005_20
-2024-11-12 21:54:13,091 - INFO - Getting info from TR0331T005_T005_21
-2024-11-12 21:54:13,437 - INFO - Getting info from TR0331T005_T005_22
-2024-11-12 21:54:14,820 - INFO - Getting info from TR0513T018_T018_1
-2024-11-12 21:54:15,051 - INFO - Getting info from TR0331T005_T005_23
-2024-11-12 21:54:16,921 - INFO - Getting info from TR0502T054_T054_2
-2024-11-12 21:54:17,178 - INFO - Getting info from TR0712T010_T010_7
-2024-11-12 21:54:18,464 - INFO - Getting info from TR0712T012_T012_14
-2024-11-12 21:54:19,657 - INFO - Getting info from TR0712T012_T012_15
-2024-11-12 21:54:20,888 - INFO - Getting info from TR0331T005_T005_24
-2024-11-12 21:54:21,191 - INFO - Getting info from TR0331T005_T005_25
-2024-11-12 21:54:22,336 - INFO - Getting info from TR0331T005_T005_26
-2024-11-12 21:54:23,385 - INFO - Getting info from TR0331T005_T005_27
-2024-11-12 21:54:24,584 - INFO - Getting info from TR0331T005_T005_28
-2024-11-12 21:54:25,657 - INFO - Getting info from TR0331T005_T005_29
-2024-11-12 21:54:26,825 - INFO - Getting info from TR0710T007_T007_1
-2024-11-12 21:54:28,059 - INFO - Getting info from TR0725T001_T001_1
-2024-11-12 21:54:28,335 - INFO - Getting info from TR0330T006_T006_7
-2024-11-12 21:54:29,455 - INFO - Getting info from TR0331T005_T005_30
-2024-11-12 21:54:29,710 - INFO - Getting info from TR0331T005_T005_31
-2024-11-12 21:54:29,926 - INFO - Getting info from UNKNOWN_NOWN_1
-2024-11-12 21:54:30,978 - INFO - Getting info from UNKNOWN_NOWN_2
-2024-11-12 21:54:32,116 - INFO - Getting info from TR0712T012_T012_16
-2024-11-12 21:54:33,379 - INFO - Getting info from TR0712T012_T012_17
-2024-11-12 21:54:34,600 - INFO - Getting info from TR0712T012_T012_18
-2024-11-12 21:54:35,879 - INFO - Getting info from TR0712T012_T012_19
-2024-11-12 21:54:36,166 - INFO - Getting info from TR0712T012_T012_20
-2024-11-12 21:54:37,483 - INFO - Getting info from TR0712T012_T012_21
-2024-11-12 21:54:38,643 - INFO - Getting info from TR0615T010_T010_1
-2024-11-12 21:54:40,107 - INFO - Getting info from TR0615T010_T010_2
-2024-11-12 21:54:41,326 - INFO - Getting info from TR0615T010_T010_3
-2024-11-12 21:54:42,527 - INFO - Getting info from TR0712T010_T010_8
-2024-11-12 21:54:43,741 - INFO - Getting info from TR0712T012_T012_22
-2024-11-12 21:54:45,014 - INFO - Getting info from TR0502T018_T018_1
-2024-11-12 21:54:46,406 - INFO - Getting info from TR0502T018_T018_2
-2024-11-12 21:54:47,668 - INFO - Getting info from TR0502T018_T018_3
-2024-11-12 21:54:48,936 - INFO - Getting info from TR0502T018_T018_4
-2024-11-12 21:54:51,069 - INFO - Getting info from TR0502T018_T018_5
-2024-11-12 21:54:53,350 - INFO - Getting info from TR0502T018_T018_6
-2024-11-12 21:54:55,104 - INFO - Getting info from TR0502T018_T018_7
-2024-11-12 21:54:56,375 - INFO - Getting info from TR0502T018_T018_8
-2024-11-12 21:54:58,382 - INFO - Getting info from TR0502T018_T018_9
-2024-11-12 21:55:00,236 - INFO - Getting info from TR0502T018_T018_10
-2024-11-12 21:55:02,080 - INFO - Getting info from TR0502T018_T018_11
-2024-11-12 21:55:03,546 - INFO - Getting info from TR0502T018_T018_12
-2024-11-12 21:55:05,357 - INFO - Getting info from TR0502T018_T018_13
-2024-11-12 21:55:07,166 - INFO - Getting info from TR0502T018_T018_14
-2024-11-12 21:55:08,717 - INFO - Getting info from TR0502T018_T018_15
-2024-11-12 21:55:10,217 - INFO - Getting info from UNKNOWN_NOWN_3
-2024-11-12 21:55:10,476 - INFO - Getting info from TR0502T005_T005_1
-2024-11-12 21:55:11,713 - INFO - Getting info from UNKNOWN_NOWN_4
-2024-11-12 21:55:12,924 - INFO - Getting info from TR0331T005_T005_32
-2024-11-12 21:55:13,189 - INFO - Getting info from TR0331T005_T005_33
-2024-11-12 21:55:13,430 - INFO - Getting info from TR0331T006_T006_1
-2024-11-12 21:55:13,706 - INFO - Getting info from TR0331T005_
-2024-11-12 21:55:14,804 - INFO - Getting info from TR0331T005_T005_34
-2024-11-12 21:55:15,108 - INFO - Working on trap year: 2023/24
-2024-11-12 21:55:15,108 - ERROR - There was an exception
+2024-11-12 22:25:24,966 - INFO - Connecting to map hub
+2024-11-12 22:25:27,902 - INFO - Connection successful
+2024-11-12 22:25:27,902 - INFO - Connecting to object storage
+2024-11-12 22:26:07,529 - INFO - Downloading photos on the traps layer
+2024-11-12 22:26:34,496 - INFO - Downloading photos on the trap checks layer
+2024-11-12 22:27:29,186 - INFO - Downloading photos on the fisher layer
+2024-11-12 22:27:39,959 - INFO - Creating report
+2024-11-12 22:27:39,961 - INFO - Generating traps sheet
+2024-11-12 22:27:41,155 - INFO - Generating trap checks sheet
+2024-11-12 22:27:42,073 - INFO - Generating fisher sheet
+2024-11-12 22:27:42,787 - INFO - Uploading document to object storage
+2024-11-12 22:27:42,976 - INFO - Creating WILD report
+2024-11-12 22:27:44,322 - INFO - Getting info from TR0331T005_T005_1
+2024-11-12 22:27:45,913 - INFO - Getting info from TR0331T005_T005_2
+2024-11-12 22:27:47,406 - INFO - Getting info from TR0331T005_T005_3
+2024-11-12 22:27:48,717 - INFO - Getting info from TR0331T005_T005_4
+2024-11-12 22:27:49,823 - INFO - Getting info from TR0331T005_T005_5
+2024-11-12 22:27:51,237 - INFO - Getting info from TR0331T005_T005_6
+2024-11-12 22:27:52,360 - INFO - Getting info from TR0331T005_T005_7
+2024-11-12 22:27:53,560 - INFO - Getting info from TR0331T005_T005_8
+2024-11-12 22:27:55,059 - INFO - Getting info from TR0331T005_T005_9
+2024-11-12 22:27:56,621 - INFO - Getting info from TR0331T005_T005_10
+2024-11-12 22:27:58,056 - INFO - Getting info from TR0331T005_T005_11
+2024-11-12 22:27:59,507 - INFO - Getting info from TR0331T005_T005_12
+2024-11-12 22:28:00,784 - INFO - Getting info from TR0331T005_T005_13
+2024-11-12 22:28:01,959 - INFO - Getting info from TR0331T005_T005_14
+2024-11-12 22:28:03,649 - INFO - Getting info from TR0331T005_T005_18
+2024-11-12 22:28:05,062 - INFO - Getting info from TR0331T005_T005_15
+2024-11-12 22:28:06,632 - INFO - Getting info from TR0331T005_T005_16
+2024-11-12 22:28:08,330 - INFO - Getting info from TR0331T005_T005_17
+2024-11-12 22:28:09,706 - INFO - Getting info from TR0330T006_T006_1
+2024-11-12 22:28:11,098 - INFO - Getting info from TR0330T006_T006_2
+2024-11-12 22:28:12,466 - INFO - Getting info from TR0330T006_T006_3
+2024-11-12 22:28:14,070 - INFO - Getting info from TR0330T006_T006_4
+2024-11-12 22:28:15,758 - INFO - Getting info from TR0330T006_T006_5
+2024-11-12 22:28:17,338 - INFO - Getting info from TR0330T006_T006_6
+2024-11-12 22:28:18,485 - INFO - Getting info from TR0712T012_T012_1
+2024-11-12 22:28:19,653 - INFO - Getting info from TR0712T012_T012_2
+2024-11-12 22:28:21,321 - INFO - Getting info from TR0712T012_T012_3
+2024-11-12 22:28:22,952 - INFO - Getting info from TR0712T010_T010_1
+2024-11-12 22:28:24,365 - INFO - Getting info from TR0712T010_T010_2
+2024-11-12 22:28:25,801 - INFO - Getting info from TR0712T012_T012_4
+2024-11-12 22:28:26,059 - INFO - Getting info from TR0712T012_T012_5
+2024-11-12 22:28:26,267 - INFO - Getting info from TR0317T005_T005_1
+2024-11-12 22:28:26,517 - INFO - Getting info from TR0714T005_T005_1
+2024-11-12 22:28:28,118 - INFO - Getting info from TR0714T005_T005_2
+2024-11-12 22:28:29,423 - INFO - Getting info from TR0714T005_T005_3
+2024-11-12 22:28:30,639 - INFO - Getting info from TR0515T003_T003_1
+2024-11-12 22:28:31,973 - INFO - Getting info from TR0515T003_T003_2
+2024-11-12 22:28:33,352 - INFO - Getting info from TR0715T013_T013_1
+2024-11-12 22:28:34,474 - INFO - Getting info from TR0515T003_T003_3
+2024-11-12 22:28:34,966 - INFO - Getting info from TR0515T003_T003_4
+2024-11-12 22:28:35,237 - INFO - Getting info from TR0715T013_T013_2
+2024-11-12 22:28:35,469 - INFO - Getting info from TR0331T002_T002_1
+2024-11-12 22:28:35,697 - INFO - Getting info from TR0331T002_T002_2
+2024-11-12 22:28:35,976 - INFO - Getting info from TR0331T002_T002_3
+2024-11-12 22:28:36,234 - INFO - Getting info from TR0331T002_T002_4
+2024-11-12 22:28:36,511 - INFO - Getting info from TR0331T002_T002_5
+2024-11-12 22:28:36,732 - INFO - Getting info from TR0331T002_T002_6
+2024-11-12 22:28:36,955 - INFO - Getting info from TR0712T010_T010_3
+2024-11-12 22:28:38,092 - INFO - Getting info from TR0712T010_T010_4
+2024-11-12 22:28:39,603 - INFO - Getting info from TR0712T010_T010_5
+2024-11-12 22:28:41,077 - INFO - Getting info from TR0712T010_T010_6
+2024-11-12 22:28:42,423 - INFO - Getting info from TR0712T009_T009_1
+2024-11-12 22:28:43,762 - INFO - Getting info from TR0712T012_T012_6
+2024-11-12 22:28:45,311 - INFO - Getting info from TR0712T012_T012_7
+2024-11-12 22:28:46,658 - INFO - Getting info from TR0712T012_T012_8
+2024-11-12 22:28:48,188 - INFO - Getting info from TR0712T012_T012_9
+2024-11-12 22:28:48,505 - INFO - Getting info from TR0712T012_T012_10
+2024-11-12 22:28:49,724 - INFO - Getting info from TR0712T012_T012_11
+2024-11-12 22:28:50,883 - INFO - Getting info from TR0712T012_T012_12
+2024-11-12 22:28:52,072 - INFO - Getting info from TR0712T012_T012_13
+2024-11-12 22:28:53,212 - INFO - Getting info from TR0515T019_T019_1
+2024-11-12 22:28:53,449 - INFO - Getting info from TR0502T054_T054_1
+2024-11-12 22:28:53,920 - INFO - Getting info from TR0515T019_T019_2
+2024-11-12 22:28:54,154 - INFO - Getting info from TR0331T005_T005_19
+2024-11-12 22:28:55,618 - INFO - Getting info from TR0331T002_T002_7
+2024-11-12 22:28:55,894 - INFO - Getting info from TR0331T002_T002_8
+2024-11-12 22:28:56,113 - INFO - Getting info from TR0331T002_T002_9
+2024-11-12 22:28:56,356 - INFO - Getting info from TR0331T005_T005_20
+2024-11-12 22:28:56,613 - INFO - Getting info from TR0331T005_T005_21
+2024-11-12 22:28:56,858 - INFO - Getting info from TR0331T005_T005_22
+2024-11-12 22:28:58,017 - INFO - Getting info from TR0513T018_T018_1
+2024-11-12 22:28:58,239 - INFO - Getting info from TR0331T005_T005_23
+2024-11-12 22:28:59,575 - INFO - Getting info from TR0502T054_T054_2
+2024-11-12 22:28:59,857 - INFO - Getting info from TR0712T010_T010_7
+2024-11-12 22:29:01,647 - INFO - Getting info from TR0712T012_T012_14
+2024-11-12 22:29:02,848 - INFO - Getting info from TR0712T012_T012_15
+2024-11-12 22:29:04,074 - INFO - Getting info from TR0331T005_T005_24
+2024-11-12 22:29:04,309 - INFO - Getting info from TR0331T005_T005_25
+2024-11-12 22:29:05,545 - INFO - Getting info from TR0331T005_T005_26
+2024-11-12 22:29:06,848 - INFO - Getting info from TR0331T005_T005_27
+2024-11-12 22:29:08,155 - INFO - Getting info from TR0331T005_T005_28
+2024-11-12 22:29:09,499 - INFO - Getting info from TR0331T005_T005_29
+2024-11-12 22:29:10,967 - INFO - Getting info from TR0710T007_T007_1
+2024-11-12 22:29:12,131 - INFO - Getting info from TR0725T001_T001_1
+2024-11-12 22:29:12,603 - INFO - Getting info from TR0330T006_T006_7
+2024-11-12 22:29:13,844 - INFO - Getting info from TR0331T005_T005_30
+2024-11-12 22:29:14,075 - INFO - Getting info from TR0331T005_T005_31
+2024-11-12 22:29:14,669 - INFO - Getting info from UNKNOWN_NOWN_1
+2024-11-12 22:29:15,931 - INFO - Getting info from UNKNOWN_NOWN_2
+2024-11-12 22:29:17,161 - INFO - Getting info from TR0712T012_T012_16
+2024-11-12 22:29:19,059 - INFO - Getting info from TR0712T012_T012_17
+2024-11-12 22:29:20,339 - INFO - Getting info from TR0712T012_T012_18
+2024-11-12 22:29:21,784 - INFO - Getting info from TR0712T012_T012_19
+2024-11-12 22:29:22,171 - INFO - Getting info from TR0712T012_T012_20
+2024-11-12 22:29:23,706 - INFO - Getting info from TR0712T012_T012_21
+2024-11-12 22:29:25,258 - INFO - Getting info from TR0615T010_T010_1
+2024-11-12 22:29:26,389 - INFO - Getting info from TR0615T010_T010_2
+2024-11-12 22:29:27,524 - INFO - Getting info from TR0615T010_T010_3
+2024-11-12 22:29:28,783 - INFO - Getting info from TR0712T010_T010_8
+2024-11-12 22:29:29,967 - INFO - Getting info from TR0712T012_T012_22
+2024-11-12 22:29:31,294 - INFO - Getting info from TR0502T018_T018_1
+2024-11-12 22:29:32,602 - INFO - Getting info from TR0502T018_T018_2
+2024-11-12 22:29:34,010 - INFO - Getting info from TR0502T018_T018_3
+2024-11-12 22:29:35,197 - INFO - Getting info from TR0502T018_T018_4
+2024-11-12 22:29:36,731 - INFO - Getting info from TR0502T018_T018_5
+2024-11-12 22:29:38,046 - INFO - Getting info from TR0502T018_T018_6
+2024-11-12 22:29:39,520 - INFO - Getting info from TR0502T018_T018_7
+2024-11-12 22:29:40,972 - INFO - Getting info from TR0502T018_T018_8
+2024-11-12 22:29:42,422 - INFO - Getting info from TR0502T018_T018_9
+2024-11-12 22:29:43,968 - INFO - Getting info from TR0502T018_T018_10
+2024-11-12 22:29:45,449 - INFO - Getting info from TR0502T018_T018_11
+2024-11-12 22:29:46,900 - INFO - Getting info from TR0502T018_T018_12
+2024-11-12 22:29:48,154 - INFO - Getting info from TR0502T018_T018_13
+2024-11-12 22:29:49,923 - INFO - Getting info from TR0502T018_T018_14
+2024-11-12 22:29:51,295 - INFO - Getting info from TR0502T018_T018_15
+2024-11-12 22:29:52,707 - INFO - Getting info from UNKNOWN_NOWN_3
+2024-11-12 22:29:52,956 - INFO - Getting info from TR0502T005_T005_1
+2024-11-12 22:29:54,520 - INFO - Getting info from UNKNOWN_NOWN_4
+2024-11-12 22:29:55,655 - INFO - Getting info from TR0331T005_T005_32
+2024-11-12 22:29:55,914 - INFO - Getting info from TR0331T005_T005_33
+2024-11-12 22:29:56,125 - INFO - Getting info from TR0331T006_T006_1
+2024-11-12 22:29:56,393 - INFO - Getting info from TR0331T005_
+2024-11-12 22:29:57,765 - INFO - Getting info from TR0331T005_T005_34
+2024-11-12 22:29:58,266 - INFO - Working on trap year: 2023/24
+2024-11-12 22:29:58,266 - INFO - Creating report for TR0330T006
+2024-11-12 22:29:58,266 - ERROR - There was an exception
 Traceback (most recent call last):
   File "/home/runner/work/trapper-data-reporting/trapper-data-reporting/trapper_data_collection/trapper_reporting.py", line 28, in run_app
     report.create_wild_report()
-  File "/home/runner/work/trapper-data-reporting/trapper-data-reporting/trapper_data_collection/trapper_reporting.py", line 263, in create_wild_report
-    for trapline in sorted(dict_wild[trapyear].keys()):
-AttributeError: 'TrapYear' object has no attribute 'keys'
-2024-11-12 21:55:15,109 - INFO - Disconnecting from maphub
-2024-11-12 21:55:15,109 - INFO - Closing object storage connection
+  File "/home/runner/work/trapper-data-reporting/trapper-data-reporting/trapper_data_collection/trapper_reporting.py", line 266, in create_wild_report
+    lst_traps = dict_wild[trapyear].get_list(trapline=trapline)
+  File "/home/runner/work/trapper-data-reporting/trapper-data-reporting/trapper_data_collection/trapper_reporting.py", line 371, in get_list
+    for lst_month in self.dict_trapline[trapline].get_list():
+  File "/home/runner/work/trapper-data-reporting/trapper-data-reporting/trapper_data_collection/trapper_reporting.py", line 382, in get_list
+    for lst_wmu in self.dict_month[month].get_list():
+  File "/home/runner/work/trapper-data-reporting/trapper-data-reporting/trapper_data_collection/trapper_reporting.py", line 392, in get_list
+    for lst_park in self.dict_wmu[wmu].get_list():
+  File "/home/runner/work/trapper-data-reporting/trapper-data-reporting/trapper_data_collection/trapper_reporting.py", line 403, in get_list
+    for lst_species in self.dict_park[park].get_list():
+  File "/home/runner/work/trapper-data-reporting/trapper-data-reporting/trapper_data_collection/trapper_reporting.py", line 418, in get_list
+    lst_species.append([species] + count)
+TypeError: can only concatenate list (not "int") to list
+2024-11-12 22:29:58,267 - INFO - Disconnecting from maphub
+2024-11-12 22:29:58,267 - INFO - Closing object storage connection
