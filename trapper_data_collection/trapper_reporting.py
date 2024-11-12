@@ -88,8 +88,6 @@ class TrapReport:
         self.trapper_bucket = trap_config.BUCKET
         self.bucket_prefix ='trapper_data_collection'
 
-        self.dict_traplines = defaultdict(Trapline)
-
         self.logger.info('Connecting to map hub')
         self.gis = GIS(url=self.portal_url, username=self.ago_user, password=self.ago_pass, expiration=9999)
         self.logger.info('Connection successful')
