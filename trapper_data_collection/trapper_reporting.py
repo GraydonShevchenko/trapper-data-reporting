@@ -269,12 +269,9 @@ class TrapReport:
                 trapline_result = dict_wild[trapyear].get_list(trapline=trapline)
                 lst_trapline = trapline_result[0]
                 catch_count = trapline_result[1]
-                if catch_count > 0:
-                    for trap in lst_trapline:
-                        lst_traps.append([trapyear] + trap)
-                else:
-                    lst_traps
-                self.logger.info(lst_traps)
+                for trap in lst_trapline:
+                    lst_traps.append([trapyear] + trap)
+
                 df = pd.DataFrame(data=lst_traps, columns=columns)
                 sheet_name = trapline
                 
