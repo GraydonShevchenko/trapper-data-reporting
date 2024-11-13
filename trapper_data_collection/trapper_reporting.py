@@ -269,6 +269,7 @@ class TrapReport:
                 trapline_result = dict_wild[trapyear].get_list(trapline=trapline)
                 lst_trapline = trapline_result[0]
                 catch_count = trapline_result[1]
+                self.logger.info(trapline_result)
                 if catch_count > 0:
                     for trap in lst_trapline:
                         lst_traps.append([trapyear] + trap)
