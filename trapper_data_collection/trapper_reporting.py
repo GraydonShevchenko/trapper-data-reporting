@@ -239,15 +239,15 @@ class TrapReport:
                     if dict_wild[trap_year].dict_trapline[trapline].harvest == 'No':
                         dict_wild[trap_year].dict_trapline[trapline].harvest = harvest
                     dict_wild[trap_year].dict_trapline[trapline].dict_month[month].dict_wmu[wmu] \
-                            .dict_park[park].park_harvest = park_harvest
+                            .dict_park[park_name].park_harvest = park_harvest
                     dict_wild[trap_year].dict_trapline[trapline].dict_month[month].dict_wmu[wmu] \
-                            .dict_park[park].permit = permit
+                            .dict_park[park_name].permit = permit
                     dict_wild[trap_year].dict_trapline[trapline].dict_month[month].dict_wmu[wmu] \
-                            .dict_park[park].dict_species[species].female_count += f_count
+                            .dict_park[park_name].dict_species[species].female_count += f_count
                     dict_wild[trap_year].dict_trapline[trapline].dict_month[month].dict_wmu[wmu] \
-                            .dict_park[park].dict_species[species].male_count += m_count
+                            .dict_park[park_name].dict_species[species].male_count += m_count
                     dict_wild[trap_year].dict_trapline[trapline].dict_month[month].dict_wmu[wmu] \
-                            .dict_park[park].dict_species[species].unknown_count += u_count
+                            .dict_park[park_name].dict_species[species].unknown_count += u_count
 
 
         
@@ -269,7 +269,6 @@ class TrapReport:
                 lst_trapline = dict_wild[trapyear].get_list(trapline=trapline)
                 for trap in lst_trapline:
                     lst_traps.append([trapyear] + trap)
-                self.logger.info(lst_traps)    
                 df = pd.DataFrame(data=lst_traps, columns=columns)
                 sheet_name = trapline
                 
@@ -426,8 +425,7 @@ class TrapYear:
                     def get_list(self) -> list:
                         lst_species = []
                         for species in self.dict_species:
-                            for lst_count in self.dict_species[species].get_list():
-                                lst_species.append([species] + [lst_count])
+                            lst_species.append([species] + self.dict_species[species].get_list())
                         return lst_species
                     
                     class Species:
