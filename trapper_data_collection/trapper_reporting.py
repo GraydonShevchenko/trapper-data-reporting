@@ -423,8 +423,12 @@ class TrapYear:
                     lst_park = []
                     for park in self.dict_park:
                         for lst_species in self.dict_park[park].get_list():
-                            lst_park.append(lst_species + [self.dict_park[park].park_harvest, park, 
+                            if self.dict_park[park].catch_count != 0 and lst_species[0] != '':
+                                lst_park.append(lst_species + [self.dict_park[park].park_harvest, park, 
                                         self.dict_park[park].permit])
+                            else:
+                                lst_park = [lst_species + [self.dict_park[park].park_harvest, park, 
+                                        self.dict_park[park].permit]]
                         self.catch_count += self.dict_park[park].catch_count
                     return lst_park
 
