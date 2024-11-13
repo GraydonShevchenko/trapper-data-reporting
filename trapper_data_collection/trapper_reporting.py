@@ -238,15 +238,15 @@ class TrapReport:
                     dict_wild[trap_year].dict_trapline[trapline].trapline_type = trapline_type
                     if dict_wild[trap_year].dict_trapline[trapline].harvest == 'No':
                         dict_wild[trap_year].dict_trapline[trapline].harvest = harvest
-                    dict_wild[trap_year].dict_trapline[trapline].dict_month[month].dict_wmu[wmu] \
+                    dict_wild[trap_year].dict_trapline[trapline].dict_wmu[wmu].dict_month[month] \
                             .dict_park[park_name].park_harvest = park_harvest
-                    dict_wild[trap_year].dict_trapline[trapline].dict_month[month].dict_wmu[wmu] \
+                    dict_wild[trap_year].dict_trapline[trapline].dict_wmu[wmu].dict_month[month] \
                             .dict_park[park_name].permit = permit
-                    dict_wild[trap_year].dict_trapline[trapline].dict_month[month].dict_wmu[wmu] \
+                    dict_wild[trap_year].dict_trapline[trapline].dict_wmu[wmu].dict_month[month] \
                             .dict_park[park_name].dict_species[species].female_count += f_count
-                    dict_wild[trap_year].dict_trapline[trapline].dict_month[month].dict_wmu[wmu] \
+                    dict_wild[trap_year].dict_trapline[trapline].dict_wmu[wmu].dict_month[month] \
                             .dict_park[park_name].dict_species[species].male_count += m_count
-                    dict_wild[trap_year].dict_trapline[trapline].dict_month[month].dict_wmu[wmu] \
+                    dict_wild[trap_year].dict_trapline[trapline].dict_wmu[wmu].dict_month[month] \
                             .dict_park[park_name].dict_species[species].unknown_count += u_count
 
 
@@ -266,9 +266,14 @@ class TrapReport:
                 self.logger.info(f'Creating report for {trapline}')
                 xl_file = os.path.join(out_dir, f'{trapline.lower()}_wild_report.xlsx')
                 lst_traps = []
-                lst_trapline = dict_wild[trapyear].get_list(trapline=trapline)
-                for trap in lst_trapline:
-                    lst_traps.append([trapyear] + trap)
+                trapline_result = dict_wild[trapyear].get_list(trapline=trapline)
+                lst_trapline = trapline_result[0]
+                catch_count = trapline_result[1]
+                if catch_count > 0:
+                    for trap in lst_trapline:
+                        lst_traps.append([trapyear] + trap)
+                else:
+                    lst_traps
                 df = pd.DataFrame(data=lst_traps, columns=columns)
                 sheet_name = trapline
                 
@@ -373,40 +378,48 @@ class TrapYear:
 
     def get_list(self, trapline) -> list:
         lst_traplines = []
-        for lst_month in self.dict_trapline[trapline].get_list():
-            lst_traplines.append([self.dict_trapline[trapline].harvest, self.dict_trapline[trapline].trapline_type, trapline] + lst_month)
+        for lst_wmu in self.dict_trapline[trapline].get_list():
+            lst_traplines.append([self.dict_trapline[trapline].harvest, self.dict_trapline[trapline].trapline_type, trapline] + lst_wmu)
 
-        return lst_traplines
+        return [lst_traplines, self.dict_trapline[trapline].catch_count]
+
 
     class Trapline:
         def __init__(self) -> None:
             self.trapline_type = ''
             self.harvest = 'No'
-            self.dict_month = defaultdict(self.Month)
+            self.dict_wmu = defaultdict(self.WMU)
+            self.catch_count = 0
         
         def get_list(self) -> list:
-            lst_month = []
-            for month in self.dict_month:
-                for lst_wmu in self.dict_month[month].get_list():
-                    lst_month.append([month] + lst_wmu)
+            lst_wmu = []
+            for wmu in self.dict_wmu:
+                for lst_month in self.dict_wmu[wmu].get_list():
+                    lst_wmu.append(lst_month[:2] + [wmu] + lst_month[2:])
+                if self.dict_wmu[wmu].catch_count == 0:
+                    lst_wmu = ['',''] + [wmu] + [0, 0, 0, 'No', '', '']
 
-            return lst_month
 
-        class Month:
+            return lst_wmu
+
+        class WMU:
             def __init__(self) -> None:
-                self.dict_wmu = defaultdict(self.WMU)
+                self.dict_month = defaultdict(self.Month)
+                self.catch_count = 0
             
             def get_list(self) -> list:
-                lst_wmu = []
-                for wmu in self.dict_wmu:
-                    for lst_park in self.dict_wmu[wmu].get_list():
-                        lst_wmu.append([lst_park[0]] + [wmu] + lst_park[1:])
-                return lst_wmu
+                lst_month = []
+                for month in self.dict_month:
+                    for lst_park in self.dict_month[month].get_list():
+                        lst_month.append([month] + [lst_park])
+                    self.catch_count += self.dict_month[month].catch_count
+                return lst_month
 
 
-            class WMU:
+            class Month:
                 def __init__(self) -> None:
                     self.dict_park = defaultdict(self.Park)
+                    self.catch_count = 0
                 
                 def get_list(self) -> list:
                     lst_park = []
@@ -414,6 +427,7 @@ class TrapYear:
                         for lst_species in self.dict_park[park].get_list():
                             lst_park.append(lst_species + [self.dict_park[park].park_harvest, park, 
                                         self.dict_park[park].permit])
+                        self.catch_count += self.dict_park[park].catch_count
                     return lst_park
 
                 class Park:
@@ -421,11 +435,16 @@ class TrapYear:
                         self.park_harvest = ''
                         self.permit = ''
                         self.dict_species = defaultdict(self.Species)
+                        self.catch_count = 0
                     
                     def get_list(self) -> list:
                         lst_species = []
                         for species in self.dict_species:
-                            lst_species.append([species] + self.dict_species[species].get_list())
+                            self.catch_count += self.dict_species[species].get_count()
+                            if species != '':
+                                lst_species.append([species] + self.dict_species[species].get_list())
+                        if not lst_species:
+                            lst_species = ['', 0, 0, 0]
                         return lst_species
                     
                     class Species:
@@ -433,6 +452,9 @@ class TrapYear:
                             self.male_count = 0
                             self.female_count = 0
                             self.unknown_count = 0
+
+                        def get_count(self) -> int:
+                            return self.male_count + self.female_count + self.unknown_count
 
                         def get_list(self) -> list:
                             return [self.male_count, self.female_count, self.unknown_count]
