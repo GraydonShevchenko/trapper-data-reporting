@@ -398,8 +398,8 @@ class TrapYear:
                 for lst_month in self.dict_wmu[wmu].get_list():
                     lst_wmu.append(lst_month[:2] + [wmu] + lst_month[2:])
                 if self.dict_wmu[wmu].catch_count == 0:
-                    lst_wmu = ['',''] + [wmu] + [0, 0, 0, 'No', '', '']
-
+                    lst_wmu = [['',''] + [wmu] + [0, 0, 0, 'No', '', '']]
+                self.catch_count += self.dict_wmu[wmu].catch_count
 
             return lst_wmu
 
