@@ -224,9 +224,9 @@ class TrapReport:
                     species = '' if species == 'Na' else species if species !='Other' else comments
                     harvest = 'Yes' if species else 'No'
                     sex = record['attributes']['SEX']
-                    m_count = 0 if sex != 'Male' else 1
-                    f_count = 0 if sex != 'Female' else 1
-                    u_count = 1 if sex == 'NA' and species else 0
+                    m_count = 0 if sex.lower() != 'male' else 1
+                    f_count = 0 if sex.lower() != 'female' else 1
+                    u_count = 1 if sex.lower() == 'na' and species else 0
                     park_harvest = 'No'
                     permit = ''
                     park_name = ''
@@ -445,7 +445,7 @@ class TrapYear:
                             if species != '':
                                 lst_species.append([species] + self.dict_species[species].get_list())
                         if not lst_species:
-                            lst_species = ['', 0, 0, 0]
+                            lst_species = [['', 0, 0, 0]]
                         return lst_species
                     
                     class Species:
