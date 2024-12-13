@@ -1,8 +1,8 @@
-2024-12-12 08:30:47,448 - INFO - Connecting to map hub
-2024-12-12 08:30:48,456 - INFO - Connection successful
-2024-12-12 08:30:48,456 - INFO - Shifting any traps that indicated the coordinates should not be included
-2024-12-12 08:30:49,278 - INFO - Updating traps layer with most recent trap check status
-2024-12-12 08:31:00,591 - INFO - Renaming photos on the traps layer
-2024-12-12 08:31:14,824 - INFO - Renaming photos on the trap checks layer
-2024-12-12 08:31:37,563 - INFO - Renaming photos on the fisher layer
-2024-12-12 08:31:41,987 - INFO - Disconnecting from maphub
+2024-12-13 08:30:40,667 - INFO - Connecting to map hub
+2024-12-13 08:30:41,372 - INFO - Connection successful
+2024-12-13 08:30:41,372 - INFO - Shifting any traps that indicated the coordinates should not be included
+2024-12-13 08:30:42,297 - INFO - Updating traps layer with most recent trap check status
+2024-12-13 08:30:53,315 - INFO - Renaming photos on the traps layer
+2024-12-13 08:31:06,410 - INFO - Renaming photos on the trap checks layer
+2024-12-13 08:31:27,362 - INFO - Renaming photos on the fisher layer
+2024-12-13 08:31:31,413 - INFO - Disconnecting from maphub
