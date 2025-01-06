@@ -1,8 +1,18 @@
-2025-01-05 08:25:21,884 - INFO - Connecting to map hub
-2025-01-05 08:25:25,301 - INFO - Connection successful
-2025-01-05 08:25:25,301 - INFO - Shifting any traps that indicated the coordinates should not be included
-2025-01-05 08:25:26,623 - INFO - Updating traps layer with most recent trap check status
-2025-01-05 08:25:48,063 - INFO - Renaming photos on the traps layer
-2025-01-05 08:26:14,655 - INFO - Renaming photos on the trap checks layer
-2025-01-05 08:27:16,939 - INFO - Renaming photos on the fisher layer
-2025-01-05 08:27:30,948 - INFO - Disconnecting from maphub
+2025-01-06 08:29:03,698 - INFO - Connecting to map hub
+2025-01-06 08:29:05,023 - INFO - Connection successful
+2025-01-06 08:29:05,023 - INFO - Shifting any traps that indicated the coordinates should not be included
+2025-01-06 08:29:05,980 - INFO - Updating traps layer with most recent trap check status
+2025-01-06 08:29:19,030 - INFO - Renaming photos on the traps layer
+2025-01-06 08:29:35,643 - INFO - Renaming photos on the trap checks layer
+2025-01-06 08:30:08,114 - INFO - Renaming photos on the fisher layer
+2025-01-06 08:30:14,718 - INFO - Renaming IMG_3266.jpeg to fisher_kill site/fisher carcass_109_photo1.jpeg
+2025-01-06 08:30:15,179 - ERROR - There was an exception
+Traceback (most recent call last):
+  File "/home/runner/work/trapper-data-reporting/trapper-data-reporting/trapper_data_collection/trapper_data_modification.py", line 20, in run_app
+    traps.update_attachments()
+  File "/home/runner/work/trapper-data-reporting/trapper-data-reporting/trapper_data_collection/trapper_data_modification.py", line 172, in update_attachments
+    self.rename_attachments(ago_layer=self.ago_fisher, layer_name='fisher', fld_unique_id='OBJECTID', fld_picture='PICTURE', photo_prefix='fisher')
+  File "/home/runner/work/trapper-data-reporting/trapper-data-reporting/trapper_data_collection/trapper_data_modification.py", line 241, in rename_attachments
+    os.rename(attach_file, new_attach_file)
+FileNotFoundError: [Errno 2] No such file or directory: '/tmp/IMG_3266.jpeg' -> '/tmp/fisher_kill site/fisher carcass_109_photo1.jpeg'
+2025-01-06 08:30:15,180 - INFO - Disconnecting from maphub
