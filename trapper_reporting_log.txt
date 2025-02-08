@@ -1,15 +1,15 @@
-2025-02-01 08:42:44,235 - INFO - Connecting to map hub
-2025-02-01 08:42:44,998 - INFO - Connection successful
-2025-02-01 08:42:44,998 - INFO - Connecting to object storage
-2025-02-01 08:43:36,894 - INFO - Downloading photos on the traps layer
-2025-02-01 08:43:53,452 - INFO - Downloading photos on the trap checks layer
-2025-02-01 08:44:25,549 - INFO - Downloading photos on the fisher layer
-2025-02-01 08:44:32,931 - INFO - Creating report
-2025-02-01 08:44:32,933 - INFO - Generating traps sheet
-2025-02-01 08:44:33,737 - INFO - Generating trap checks sheet
-2025-02-01 08:44:34,507 - INFO - Generating fisher sheet
-2025-02-01 08:44:35,128 - INFO - Uploading document to object storage
-2025-02-01 08:44:35,345 - ERROR - There was an exception
+2025-02-08 08:43:47,617 - INFO - Connecting to map hub
+2025-02-08 08:43:51,245 - INFO - Connection successful
+2025-02-08 08:43:51,245 - INFO - Connecting to object storage
+2025-02-08 08:44:34,440 - INFO - Downloading photos on the traps layer
+2025-02-08 08:45:01,845 - INFO - Downloading photos on the trap checks layer
+2025-02-08 08:46:01,649 - INFO - Downloading photos on the fisher layer
+2025-02-08 08:46:15,617 - INFO - Creating report
+2025-02-08 08:46:15,619 - INFO - Generating traps sheet
+2025-02-08 08:46:16,666 - INFO - Generating trap checks sheet
+2025-02-08 08:46:17,743 - INFO - Generating fisher sheet
+2025-02-08 08:46:18,470 - INFO - Uploading document to object storage
+2025-02-08 08:46:18,564 - ERROR - There was an exception
 Traceback (most recent call last):
   File "/usr/share/miniconda/envs/trapper_env/lib/python3.9/site-packages/boto3/s3/transfer.py", line 372, in upload_file
     future.result()
@@ -41,5 +41,5 @@ Traceback (most recent call last):
   File "/usr/share/miniconda/envs/trapper_env/lib/python3.9/site-packages/boto3/s3/transfer.py", line 378, in upload_file
     raise S3UploadFailedError(
 boto3.exceptions.S3UploadFailedError: Failed to upload trapper_data_report.xlsx to fishes/trapper_data_collection/trapper_data_report.xlsx: An error occurred (XAmzContentSHA256Mismatch) when calling the PutObject operation: The Content-SHA256 you specified did not match what we received
-2025-02-01 08:44:35,413 - INFO - Disconnecting from maphub
-2025-02-01 08:44:35,415 - INFO - Closing object storage connection
+2025-02-08 08:46:18,650 - INFO - Disconnecting from maphub
+2025-02-08 08:46:18,652 - INFO - Closing object storage connection
