@@ -1,15 +1,15 @@
-2025-03-22 08:44:40,936 - INFO - Connecting to map hub
-2025-03-22 08:44:44,490 - INFO - Connection successful
-2025-03-22 08:44:44,490 - INFO - Connecting to object storage
-2025-03-22 08:45:20,071 - INFO - Downloading photos on the traps layer
-2025-03-22 08:45:48,290 - INFO - Downloading photos on the trap checks layer
-2025-03-22 08:46:48,046 - INFO - Downloading photos on the fisher layer
-2025-03-22 08:47:01,774 - INFO - Creating report
-2025-03-22 08:47:01,775 - INFO - Generating traps sheet
-2025-03-22 08:47:03,312 - INFO - Generating trap checks sheet
-2025-03-22 08:47:04,817 - INFO - Generating fisher sheet
-2025-03-22 08:47:05,541 - INFO - Uploading document to object storage
-2025-03-22 08:47:05,635 - ERROR - There was an exception
+2025-03-29 08:45:45,376 - INFO - Connecting to map hub
+2025-03-29 08:45:46,830 - INFO - Connection successful
+2025-03-29 08:45:46,830 - INFO - Connecting to object storage
+2025-03-29 08:46:25,997 - INFO - Downloading photos on the traps layer
+2025-03-29 08:46:42,734 - INFO - Downloading photos on the trap checks layer
+2025-03-29 08:47:15,104 - INFO - Downloading photos on the fisher layer
+2025-03-29 08:47:22,220 - INFO - Creating report
+2025-03-29 08:47:22,222 - INFO - Generating traps sheet
+2025-03-29 08:47:22,956 - INFO - Generating trap checks sheet
+2025-03-29 08:47:23,671 - INFO - Generating fisher sheet
+2025-03-29 08:47:24,154 - INFO - Uploading document to object storage
+2025-03-29 08:47:24,336 - ERROR - There was an exception
 Traceback (most recent call last):
   File "/usr/share/miniconda/envs/trapper_env/lib/python3.9/site-packages/boto3/s3/transfer.py", line 372, in upload_file
     future.result()
@@ -23,9 +23,11 @@ Traceback (most recent call last):
     return_value = self._main(**kwargs)
   File "/usr/share/miniconda/envs/trapper_env/lib/python3.9/site-packages/s3transfer/upload.py", line 796, in _main
     client.put_object(Bucket=bucket, Key=key, Body=body, **extra_args)
-  File "/usr/share/miniconda/envs/trapper_env/lib/python3.9/site-packages/botocore/client.py", line 569, in _api_call
+  File "/usr/share/miniconda/envs/trapper_env/lib/python3.9/site-packages/botocore/client.py", line 570, in _api_call
     return self._make_api_call(operation_name, kwargs)
-  File "/usr/share/miniconda/envs/trapper_env/lib/python3.9/site-packages/botocore/client.py", line 1023, in _make_api_call
+  File "/usr/share/miniconda/envs/trapper_env/lib/python3.9/site-packages/botocore/context.py", line 124, in wrapper
+    return func(*args, **kwargs)
+  File "/usr/share/miniconda/envs/trapper_env/lib/python3.9/site-packages/botocore/client.py", line 1031, in _make_api_call
     raise error_class(parsed_response, operation_name)
 botocore.exceptions.ClientError: An error occurred (XAmzContentSHA256Mismatch) when calling the PutObject operation: The Content-SHA256 you specified did not match what we received
 
@@ -36,10 +38,12 @@ Traceback (most recent call last):
     report.create_excel()
   File "/home/runner/work/trapper-data-reporting/trapper-data-reporting/trapper_data_collection/trapper_reporting.py", line 340, in create_excel
     self.boto_resource.meta.client.upload_file(xl_report, self.trapper_bucket, ostore_path)
-  File "/usr/share/miniconda/envs/trapper_env/lib/python3.9/site-packages/boto3/s3/inject.py", line 145, in upload_file
+  File "/usr/share/miniconda/envs/trapper_env/lib/python3.9/site-packages/botocore/context.py", line 124, in wrapper
+    return func(*args, **kwargs)
+  File "/usr/share/miniconda/envs/trapper_env/lib/python3.9/site-packages/boto3/s3/inject.py", line 170, in upload_file
     return transfer.upload_file(
   File "/usr/share/miniconda/envs/trapper_env/lib/python3.9/site-packages/boto3/s3/transfer.py", line 378, in upload_file
     raise S3UploadFailedError(
 boto3.exceptions.S3UploadFailedError: Failed to upload trapper_data_report.xlsx to fishes/trapper_data_collection/trapper_data_report.xlsx: An error occurred (XAmzContentSHA256Mismatch) when calling the PutObject operation: The Content-SHA256 you specified did not match what we received
-2025-03-22 08:47:05,705 - INFO - Disconnecting from maphub
-2025-03-22 08:47:05,707 - INFO - Closing object storage connection
+2025-03-29 08:47:24,419 - INFO - Disconnecting from maphub
+2025-03-29 08:47:24,421 - INFO - Closing object storage connection
