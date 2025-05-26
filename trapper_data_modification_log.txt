@@ -1,18 +1,26 @@
-2025-05-25 08:29:54,584 - INFO - Connecting to map hub
-2025-05-25 08:29:57,970 - INFO - Connection successful
-2025-05-25 08:29:57,970 - INFO - Shifting any traps that indicated the coordinates should not be included
-2025-05-25 08:29:59,332 - INFO - Updating traps layer with most recent trap check status
-2025-05-25 08:30:20,433 - INFO - Renaming photos on the traps layer
-2025-05-25 08:30:48,260 - INFO - Renaming photos on the trap checks layer
-2025-05-25 08:31:51,982 - INFO - Renaming photos on the fisher layer
-2025-05-25 08:32:04,871 - INFO - Renaming IMG_3266.jpeg to fisher_kill site/fisher carcass_109_photo1.jpeg
-2025-05-25 08:32:05,736 - ERROR - There was an exception
+2025-05-26 08:49:04,617 - INFO - Connecting to map hub
+2025-05-26 08:49:05,558 - INFO - Connection successful
+2025-05-26 08:49:05,559 - INFO - Shifting any traps that indicated the coordinates should not be included
+2025-05-26 08:49:06,633 - INFO - Updating traps layer with most recent trap check status
+2025-05-26 08:49:17,550 - INFO - Renaming photos on the traps layer
+2025-05-26 08:49:21,766 - ERROR - There was an exception
 Traceback (most recent call last):
   File "/home/runner/work/trapper-data-reporting/trapper-data-reporting/trapper_data_collection/trapper_data_modification.py", line 20, in run_app
     traps.update_attachments()
-  File "/home/runner/work/trapper-data-reporting/trapper-data-reporting/trapper_data_collection/trapper_data_modification.py", line 172, in update_attachments
-    self.rename_attachments(ago_layer=self.ago_fisher, layer_name='fisher', fld_unique_id='OBJECTID', fld_picture='PICTURE', photo_prefix='fisher')
-  File "/home/runner/work/trapper-data-reporting/trapper-data-reporting/trapper_data_collection/trapper_data_modification.py", line 241, in rename_attachments
-    os.rename(attach_file, new_attach_file)
-FileNotFoundError: [Errno 2] No such file or directory: '/tmp/IMG_3266.jpeg' -> '/tmp/fisher_kill site/fisher carcass_109_photo1.jpeg'
-2025-05-25 08:32:05,737 - INFO - Disconnecting from maphub
+  File "/home/runner/work/trapper-data-reporting/trapper-data-reporting/trapper_data_collection/trapper_data_modification.py", line 167, in update_attachments
+    self.rename_attachments(ago_layer=self.ago_traps, layer_name='traps', fld_unique_id='SET_UNIQUE_ID',
+  File "/home/runner/work/trapper-data-reporting/trapper-data-reporting/trapper_data_collection/trapper_data_modification.py", line 199, in rename_attachments
+    lst_attachments = ago_flayer.attachments.get_list(oid=oid)
+  File "/usr/share/miniconda/envs/trapper_env/lib/python3.9/site-packages/arcgis/features/managers.py", line 582, in get_list
+    return self._layer._list_attachments(oid)["attachmentInfos"]
+  File "/usr/share/miniconda/envs/trapper_env/lib/python3.9/site-packages/arcgis/features/layer.py", line 746, in _list_attachments
+    return self._con.get(path=url, params=params)
+  File "/usr/share/miniconda/envs/trapper_env/lib/python3.9/site-packages/arcgis/gis/_impl/_con/_connection.py", line 863, in get
+    return self._handle_response(
+  File "/usr/share/miniconda/envs/trapper_env/lib/python3.9/site-packages/arcgis/gis/_impl/_con/_connection.py", line 1001, in _handle_response
+    self._handle_json_error(data["error"], errorcode)
+  File "/usr/share/miniconda/envs/trapper_env/lib/python3.9/site-packages/arcgis/gis/_impl/_con/_connection.py", line 1024, in _handle_json_error
+    raise Exception(errormessage)
+Exception: An error occurred.
+(Error Code: 503)
+2025-05-26 08:49:21,769 - INFO - Disconnecting from maphub
