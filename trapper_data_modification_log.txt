@@ -1,12 +1,12 @@
-2025-08-08 08:37:37,001 - INFO - Connecting to map hub
-2025-08-08 08:37:37,505 - INFO - Connection successful
-2025-08-08 08:37:37,505 - INFO - Shifting any traps that indicated the coordinates should not be included
-2025-08-08 08:37:38,794 - INFO - Updating traps layer with most recent trap check status
-2025-08-08 08:37:59,380 - INFO - Renaming photos on the traps layer
-2025-08-08 08:38:14,572 - INFO - Renaming photos on the trap checks layer
-2025-08-08 08:38:37,135 - INFO - Renaming photos on the fisher layer
-2025-08-08 08:38:41,943 - INFO - Renaming IMG_3266.jpeg to fisher_kill site/fisher carcass_109_photo1.jpeg
-2025-08-08 08:38:42,291 - ERROR - There was an exception
+2025-08-09 08:32:06,159 - INFO - Connecting to map hub
+2025-08-09 08:32:06,752 - INFO - Connection successful
+2025-08-09 08:32:06,752 - INFO - Shifting any traps that indicated the coordinates should not be included
+2025-08-09 08:32:07,907 - INFO - Updating traps layer with most recent trap check status
+2025-08-09 08:32:28,592 - INFO - Renaming photos on the traps layer
+2025-08-09 08:32:42,768 - INFO - Renaming photos on the trap checks layer
+2025-08-09 08:33:06,793 - INFO - Renaming photos on the fisher layer
+2025-08-09 08:33:11,703 - INFO - Renaming IMG_3266.jpeg to fisher_kill site/fisher carcass_109_photo1.jpeg
+2025-08-09 08:33:12,095 - ERROR - There was an exception
 Traceback (most recent call last):
   File "/home/runner/work/trapper-data-reporting/trapper-data-reporting/trapper_data_collection/trapper_data_modification.py", line 20, in run_app
     traps.update_attachments()
@@ -15,4 +15,4 @@ Traceback (most recent call last):
   File "/home/runner/work/trapper-data-reporting/trapper-data-reporting/trapper_data_collection/trapper_data_modification.py", line 241, in rename_attachments
     os.rename(attach_file, new_attach_file)
 FileNotFoundError: [Errno 2] No such file or directory: '/tmp/IMG_3266.jpeg' -> '/tmp/fisher_kill site/fisher carcass_109_photo1.jpeg'
-2025-08-08 08:38:42,292 - INFO - Disconnecting from maphub
+2025-08-09 08:33:12,095 - INFO - Disconnecting from maphub
