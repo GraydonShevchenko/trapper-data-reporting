@@ -1,15 +1,11 @@
-2025-09-27 08:43:48,053 - INFO - Connecting to map hub
-2025-09-27 08:43:48,910 - INFO - Connection successful
-2025-09-27 08:43:48,910 - INFO - Connecting to object storage
-2025-09-27 08:44:26,361 - INFO - Downloading photos on the traps layer
-2025-09-27 08:44:44,984 - INFO - Downloading photos on the trap checks layer
-2025-09-27 08:45:22,031 - INFO - Downloading photos on the fisher layer
-2025-09-27 08:45:30,149 - INFO - Creating report
-2025-09-27 08:45:30,151 - INFO - Generating traps sheet
-2025-09-27 08:45:31,020 - INFO - Generating trap checks sheet
-2025-09-27 08:45:31,710 - INFO - Generating fisher sheet
-2025-09-27 08:45:32,252 - INFO - Uploading document to object storage
-2025-09-27 08:45:32,493 - ERROR - There was an exception
+2025-10-04 08:44:18,595 - INFO - Connecting to map hub
+2025-10-04 08:44:20,213 - INFO - Connection successful
+2025-10-04 08:44:20,213 - INFO - Connecting to object storage
+2025-10-04 08:44:59,333 - INFO - Downloading photos on the traps layer
+2025-10-04 08:45:24,722 - INFO - Downloading photos on the trap checks layer
+2025-10-04 08:46:16,388 - INFO - Downloading photos on the fisher layer
+2025-10-04 08:46:28,245 - INFO - Copying 10010009.JPG to object storage
+2025-10-04 08:46:29,566 - ERROR - There was an exception
 Traceback (most recent call last):
   File "/usr/share/miniconda/envs/trapper_env/lib/python3.10/site-packages/boto3/s3/transfer.py", line 372, in upload_file
     future.result()
@@ -34,16 +30,18 @@ botocore.exceptions.ClientError: An error occurred (XAmzContentSHA256Mismatch) w
 During handling of the above exception, another exception occurred:
 
 Traceback (most recent call last):
-  File "/home/runner/work/trapper-data-reporting/trapper-data-reporting/trapper_data_collection/trapper_reporting.py", line 27, in run_app
-    report.create_excel()
-  File "/home/runner/work/trapper-data-reporting/trapper-data-reporting/trapper_data_collection/trapper_reporting.py", line 340, in create_excel
-    self.boto_resource.meta.client.upload_file(xl_report, self.trapper_bucket, ostore_path)
+  File "/home/runner/work/trapper-data-reporting/trapper-data-reporting/trapper_data_collection/trapper_reporting.py", line 26, in run_app
+    report.download_attachments()
+  File "/home/runner/work/trapper-data-reporting/trapper-data-reporting/trapper_data_collection/trapper_reporting.py", line 131, in download_attachments
+    self.copy_to_object_storage(ago_layer=self.ago_fisher, layer_name='fisher',
+  File "/home/runner/work/trapper-data-reporting/trapper-data-reporting/trapper_data_collection/trapper_reporting.py", line 176, in copy_to_object_storage
+    self.boto_resource.meta.client.upload_file(attach_file, self.trapper_bucket, ostore_path)
   File "/usr/share/miniconda/envs/trapper_env/lib/python3.10/site-packages/botocore/context.py", line 124, in wrapper
     return func(*args, **kwargs)
   File "/usr/share/miniconda/envs/trapper_env/lib/python3.10/site-packages/boto3/s3/inject.py", line 170, in upload_file
     return transfer.upload_file(
   File "/usr/share/miniconda/envs/trapper_env/lib/python3.10/site-packages/boto3/s3/transfer.py", line 378, in upload_file
     raise S3UploadFailedError(
-boto3.exceptions.S3UploadFailedError: Failed to upload trapper_data_report.xlsx to fishes/trapper_data_collection/trapper_data_report.xlsx: An error occurred (XAmzContentSHA256Mismatch) when calling the PutObject operation: The Content-SHA256 you specified did not match what we received
-2025-09-27 08:45:32,550 - INFO - Disconnecting from maphub
-2025-09-27 08:45:32,550 - INFO - Closing object storage connection
+boto3.exceptions.S3UploadFailedError: Failed to upload /tmp/10010009.JPG to fishes/trapper_data_collection/fisher/10010009.JPG: An error occurred (XAmzContentSHA256Mismatch) when calling the PutObject operation: The Content-SHA256 you specified did not match what we received
+2025-10-04 08:46:29,623 - INFO - Disconnecting from maphub
+2025-10-04 08:46:29,623 - INFO - Closing object storage connection
