@@ -1,11 +1,11 @@
-2025-11-29 08:49:28,675 - INFO - Connecting to map hub
-2025-11-29 08:49:29,312 - INFO - Connection successful
-2025-11-29 08:49:29,312 - INFO - Connecting to object storage
-2025-11-29 08:50:14,043 - INFO - Downloading photos on the traps layer
-2025-11-29 08:50:28,538 - INFO - Downloading photos on the trap checks layer
-2025-11-29 08:50:52,289 - INFO - Downloading photos on the fisher layer
-2025-11-29 08:50:57,250 - INFO - Copying 10010009.JPG to object storage
-2025-11-29 08:50:58,651 - ERROR - There was an exception
+2025-12-06 08:49:35,782 - INFO - Connecting to map hub
+2025-12-06 08:49:36,718 - INFO - Connection successful
+2025-12-06 08:49:36,718 - INFO - Connecting to object storage
+2025-12-06 08:50:19,291 - INFO - Downloading photos on the traps layer
+2025-12-06 08:50:39,804 - INFO - Downloading photos on the trap checks layer
+2025-12-06 08:51:16,981 - INFO - Downloading photos on the fisher layer
+2025-12-06 08:51:25,847 - INFO - Copying 10010009.JPG to object storage
+2025-12-06 08:51:27,225 - ERROR - There was an exception
 Traceback (most recent call last):
   File "/usr/share/miniconda/envs/trapper_env/lib/python3.10/site-packages/boto3/s3/transfer.py", line 373, in upload_file
     future.result()
@@ -43,5 +43,5 @@ Traceback (most recent call last):
   File "/usr/share/miniconda/envs/trapper_env/lib/python3.10/site-packages/boto3/s3/transfer.py", line 379, in upload_file
     raise S3UploadFailedError(
 boto3.exceptions.S3UploadFailedError: Failed to upload /tmp/10010009.JPG to fishes/trapper_data_collection/fisher/10010009.JPG: An error occurred (XAmzContentSHA256Mismatch) when calling the PutObject operation: The Content-SHA256 you specified did not match what we received
-2025-11-29 08:50:58,708 - INFO - Disconnecting from maphub
-2025-11-29 08:50:58,709 - INFO - Closing object storage connection
+2025-12-06 08:51:27,287 - INFO - Disconnecting from maphub
+2025-12-06 08:51:27,288 - INFO - Closing object storage connection
