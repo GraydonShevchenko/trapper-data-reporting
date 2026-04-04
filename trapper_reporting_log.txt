@@ -1,98 +1,47 @@
-2026-03-28 09:07:49,312 - INFO - Connecting to map hub
-2026-03-28 09:07:50,248 - INFO - Connection successful
-2026-03-28 09:07:50,248 - INFO - Connecting to object storage
-2026-03-28 09:12:56,353 - ERROR - There was an exception
+2026-04-04 09:10:08,492 - INFO - Connecting to map hub
+2026-04-04 09:10:12,729 - INFO - Connection successful
+2026-04-04 09:10:12,729 - INFO - Connecting to object storage
+2026-04-04 09:10:56,244 - INFO - Downloading photos on the traps layer
+2026-04-04 09:11:10,208 - INFO - Downloading photos on the trap checks layer
+2026-04-04 09:11:30,800 - INFO - Downloading photos on the fisher layer
+2026-04-04 09:11:35,666 - INFO - Copying 10010009.JPG to object storage
+2026-04-04 09:11:37,066 - ERROR - There was an exception
 Traceback (most recent call last):
-  File "/usr/share/miniconda/envs/trapper_env/lib/python3.10/site-packages/urllib3/connection.py", line 204, in _new_conn
-    sock = connection.create_connection(
-  File "/usr/share/miniconda/envs/trapper_env/lib/python3.10/site-packages/urllib3/util/connection.py", line 85, in create_connection
-    raise err
-  File "/usr/share/miniconda/envs/trapper_env/lib/python3.10/site-packages/urllib3/util/connection.py", line 73, in create_connection
-    sock.connect(sa)
-TimeoutError: timed out
-
-The above exception was the direct cause of the following exception:
-
-Traceback (most recent call last):
-  File "/usr/share/miniconda/envs/trapper_env/lib/python3.10/site-packages/botocore/httpsession.py", line 477, in send
-    urllib_response = conn.urlopen(
-  File "/usr/share/miniconda/envs/trapper_env/lib/python3.10/site-packages/urllib3/connectionpool.py", line 841, in urlopen
-    retries = retries.increment(
-  File "/usr/share/miniconda/envs/trapper_env/lib/python3.10/site-packages/urllib3/util/retry.py", line 465, in increment
-    raise reraise(type(error), error, _stacktrace)
-  File "/usr/share/miniconda/envs/trapper_env/lib/python3.10/site-packages/urllib3/util/util.py", line 39, in reraise
-    raise value
-  File "/usr/share/miniconda/envs/trapper_env/lib/python3.10/site-packages/urllib3/connectionpool.py", line 787, in urlopen
-    response = self._make_request(
-  File "/usr/share/miniconda/envs/trapper_env/lib/python3.10/site-packages/urllib3/connectionpool.py", line 488, in _make_request
-    raise new_e
-  File "/usr/share/miniconda/envs/trapper_env/lib/python3.10/site-packages/urllib3/connectionpool.py", line 464, in _make_request
-    self._validate_conn(conn)
-  File "/usr/share/miniconda/envs/trapper_env/lib/python3.10/site-packages/urllib3/connectionpool.py", line 1093, in _validate_conn
-    conn.connect()
-  File "/usr/share/miniconda/envs/trapper_env/lib/python3.10/site-packages/urllib3/connection.py", line 759, in connect
-    self.sock = sock = self._new_conn()
-  File "/usr/share/miniconda/envs/trapper_env/lib/python3.10/site-packages/urllib3/connection.py", line 213, in _new_conn
-    raise ConnectTimeoutError(
-urllib3.exceptions.ConnectTimeoutError: (<AWSHTTPSConnection(host='nrs.objectstore.gov.bc.ca', port=443) at 0x7f7471012a40>, 'Connection to nrs.objectstore.gov.bc.ca timed out. (connect timeout=60)')
+  File "/usr/share/miniconda/envs/trapper_env/lib/python3.10/site-packages/boto3/s3/transfer.py", line 452, in upload_file
+    future.result()
+  File "/usr/share/miniconda/envs/trapper_env/lib/python3.10/site-packages/s3transfer/futures.py", line 111, in result
+    return self._coordinator.result()
+  File "/usr/share/miniconda/envs/trapper_env/lib/python3.10/site-packages/s3transfer/futures.py", line 287, in result
+    raise self._exception
+  File "/usr/share/miniconda/envs/trapper_env/lib/python3.10/site-packages/s3transfer/tasks.py", line 142, in __call__
+    return self._execute_main(kwargs)
+  File "/usr/share/miniconda/envs/trapper_env/lib/python3.10/site-packages/s3transfer/tasks.py", line 165, in _execute_main
+    return_value = self._main(**kwargs)
+  File "/usr/share/miniconda/envs/trapper_env/lib/python3.10/site-packages/s3transfer/upload.py", line 796, in _main
+    client.put_object(Bucket=bucket, Key=key, Body=body, **extra_args)
+  File "/usr/share/miniconda/envs/trapper_env/lib/python3.10/site-packages/botocore/client.py", line 602, in _api_call
+    return self._make_api_call(operation_name, kwargs)
+  File "/usr/share/miniconda/envs/trapper_env/lib/python3.10/site-packages/botocore/context.py", line 123, in wrapper
+    return func(*args, **kwargs)
+  File "/usr/share/miniconda/envs/trapper_env/lib/python3.10/site-packages/botocore/client.py", line 1078, in _make_api_call
+    raise error_class(parsed_response, operation_name)
+botocore.exceptions.ClientError: An error occurred (XAmzContentSHA256Mismatch) when calling the PutObject operation: The Content-SHA256 you specified did not match what we received
 
 During handling of the above exception, another exception occurred:
 
 Traceback (most recent call last):
   File "/home/runner/work/trapper-data-reporting/trapper-data-reporting/trapper_data_collection/trapper_reporting.py", line 26, in run_app
     report.download_attachments()
-  File "/home/runner/work/trapper-data-reporting/trapper-data-reporting/trapper_data_collection/trapper_reporting.py", line 123, in download_attachments
-    lst_pictures = self.list_contents()
-  File "/home/runner/work/trapper-data-reporting/trapper-data-reporting/trapper_data_collection/trapper_reporting.py", line 110, in list_contents
-    for obj in obj_bucket.objects.all():
-  File "/usr/share/miniconda/envs/trapper_env/lib/python3.10/site-packages/boto3/resources/collection.py", line 79, in __iter__
-    for page in self.pages():
-  File "/usr/share/miniconda/envs/trapper_env/lib/python3.10/site-packages/boto3/resources/collection.py", line 169, in pages
-    for page in pages:
-  File "/usr/share/miniconda/envs/trapper_env/lib/python3.10/site-packages/botocore/paginate.py", line 272, in __iter__
-    response = self._make_request(current_kwargs)
+  File "/home/runner/work/trapper-data-reporting/trapper-data-reporting/trapper_data_collection/trapper_reporting.py", line 131, in download_attachments
+    self.copy_to_object_storage(ago_layer=self.ago_fisher, layer_name='fisher',
+  File "/home/runner/work/trapper-data-reporting/trapper-data-reporting/trapper_data_collection/trapper_reporting.py", line 176, in copy_to_object_storage
+    self.boto_resource.meta.client.upload_file(attach_file, self.trapper_bucket, ostore_path)
   File "/usr/share/miniconda/envs/trapper_env/lib/python3.10/site-packages/botocore/context.py", line 123, in wrapper
     return func(*args, **kwargs)
-  File "/usr/share/miniconda/envs/trapper_env/lib/python3.10/site-packages/botocore/paginate.py", line 360, in _make_request
-    return self._method(**current_kwargs)
-  File "/usr/share/miniconda/envs/trapper_env/lib/python3.10/site-packages/botocore/client.py", line 602, in _api_call
-    return self._make_api_call(operation_name, kwargs)
-  File "/usr/share/miniconda/envs/trapper_env/lib/python3.10/site-packages/botocore/context.py", line 123, in wrapper
-    return func(*args, **kwargs)
-  File "/usr/share/miniconda/envs/trapper_env/lib/python3.10/site-packages/botocore/client.py", line 1060, in _make_api_call
-    http, parsed_response = self._make_request(
-  File "/usr/share/miniconda/envs/trapper_env/lib/python3.10/site-packages/botocore/client.py", line 1084, in _make_request
-    return self._endpoint.make_request(operation_model, request_dict)
-  File "/usr/share/miniconda/envs/trapper_env/lib/python3.10/site-packages/botocore/endpoint.py", line 119, in make_request
-    return self._send_request(request_dict, operation_model)
-  File "/usr/share/miniconda/envs/trapper_env/lib/python3.10/site-packages/botocore/endpoint.py", line 200, in _send_request
-    while self._needs_retry(
-  File "/usr/share/miniconda/envs/trapper_env/lib/python3.10/site-packages/botocore/endpoint.py", line 360, in _needs_retry
-    responses = self._event_emitter.emit(
-  File "/usr/share/miniconda/envs/trapper_env/lib/python3.10/site-packages/botocore/hooks.py", line 412, in emit
-    return self._emitter.emit(aliased_event_name, **kwargs)
-  File "/usr/share/miniconda/envs/trapper_env/lib/python3.10/site-packages/botocore/hooks.py", line 256, in emit
-    return self._emit(event_name, kwargs)
-  File "/usr/share/miniconda/envs/trapper_env/lib/python3.10/site-packages/botocore/hooks.py", line 239, in _emit
-    response = handler(**kwargs)
-  File "/usr/share/miniconda/envs/trapper_env/lib/python3.10/site-packages/botocore/retryhandler.py", line 207, in __call__
-    if self._checker(**checker_kwargs):
-  File "/usr/share/miniconda/envs/trapper_env/lib/python3.10/site-packages/botocore/retryhandler.py", line 284, in __call__
-    should_retry = self._should_retry(
-  File "/usr/share/miniconda/envs/trapper_env/lib/python3.10/site-packages/botocore/retryhandler.py", line 320, in _should_retry
-    return self._checker(attempt_number, response, caught_exception)
-  File "/usr/share/miniconda/envs/trapper_env/lib/python3.10/site-packages/botocore/retryhandler.py", line 363, in __call__
-    checker_response = checker(
-  File "/usr/share/miniconda/envs/trapper_env/lib/python3.10/site-packages/botocore/retryhandler.py", line 247, in __call__
-    return self._check_caught_exception(
-  File "/usr/share/miniconda/envs/trapper_env/lib/python3.10/site-packages/botocore/retryhandler.py", line 416, in _check_caught_exception
-    raise caught_exception
-  File "/usr/share/miniconda/envs/trapper_env/lib/python3.10/site-packages/botocore/endpoint.py", line 279, in _do_get_response
-    http_response = self._send(request)
-  File "/usr/share/miniconda/envs/trapper_env/lib/python3.10/site-packages/botocore/endpoint.py", line 383, in _send
-    return self.http_session.send(request)
-  File "/usr/share/miniconda/envs/trapper_env/lib/python3.10/site-packages/botocore/httpsession.py", line 512, in send
-    raise ConnectTimeoutError(endpoint_url=request.url, error=e)
-botocore.exceptions.ConnectTimeoutError: Connect timeout on endpoint URL: "https://nrs.objectstore.gov.bc.ca/fishes?encoding-type=url"
-2026-03-28 09:12:56,410 - INFO - Disconnecting from maphub
-2026-03-28 09:12:56,411 - INFO - Closing object storage connection
+  File "/usr/share/miniconda/envs/trapper_env/lib/python3.10/site-packages/boto3/s3/inject.py", line 175, in upload_file
+    return transfer.upload_file(
+  File "/usr/share/miniconda/envs/trapper_env/lib/python3.10/site-packages/boto3/s3/transfer.py", line 458, in upload_file
+    raise S3UploadFailedError(
+boto3.exceptions.S3UploadFailedError: Failed to upload /tmp/10010009.JPG to fishes/trapper_data_collection/fisher/10010009.JPG: An error occurred (XAmzContentSHA256Mismatch) when calling the PutObject operation: The Content-SHA256 you specified did not match what we received
+2026-04-04 09:11:37,127 - INFO - Disconnecting from maphub
+2026-04-04 09:11:37,127 - INFO - Closing object storage connection
