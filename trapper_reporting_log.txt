@@ -1,11 +1,11 @@
-2026-06-06 10:32:09,978 - INFO - Connecting to map hub
-2026-06-06 10:32:10,467 - INFO - Connection successful
-2026-06-06 10:32:10,467 - INFO - Connecting to object storage
-2026-06-06 10:33:05,887 - INFO - Downloading photos on the traps layer
-2026-06-06 10:33:20,095 - INFO - Downloading photos on the trap checks layer
-2026-06-06 10:33:44,785 - INFO - Downloading photos on the fisher layer
-2026-06-06 10:33:49,899 - INFO - Copying 10010009.JPG to object storage
-2026-06-06 10:33:51,308 - ERROR - There was an exception
+2026-06-13 11:00:01,791 - INFO - Connecting to map hub
+2026-06-13 11:00:02,475 - INFO - Connection successful
+2026-06-13 11:00:02,476 - INFO - Connecting to object storage
+2026-06-13 11:00:51,487 - INFO - Downloading photos on the traps layer
+2026-06-13 11:01:06,468 - INFO - Downloading photos on the trap checks layer
+2026-06-13 11:01:28,337 - INFO - Downloading photos on the fisher layer
+2026-06-13 11:01:33,682 - INFO - Copying 10010009.JPG to object storage
+2026-06-13 11:01:35,088 - ERROR - There was an exception
 Traceback (most recent call last):
   File "/usr/share/miniconda/envs/trapper_env/lib/python3.10/site-packages/boto3/s3/transfer.py", line 452, in upload_file
     future.result()
@@ -19,11 +19,11 @@ Traceback (most recent call last):
     return_value = self._main(**kwargs)
   File "/usr/share/miniconda/envs/trapper_env/lib/python3.10/site-packages/s3transfer/upload.py", line 796, in _main
     client.put_object(Bucket=bucket, Key=key, Body=body, **extra_args)
-  File "/usr/share/miniconda/envs/trapper_env/lib/python3.10/site-packages/botocore/client.py", line 602, in _api_call
+  File "/usr/share/miniconda/envs/trapper_env/lib/python3.10/site-packages/botocore/client.py", line 606, in _api_call
     return self._make_api_call(operation_name, kwargs)
   File "/usr/share/miniconda/envs/trapper_env/lib/python3.10/site-packages/botocore/context.py", line 123, in wrapper
     return func(*args, **kwargs)
-  File "/usr/share/miniconda/envs/trapper_env/lib/python3.10/site-packages/botocore/client.py", line 1078, in _make_api_call
+  File "/usr/share/miniconda/envs/trapper_env/lib/python3.10/site-packages/botocore/client.py", line 1094, in _make_api_call
     raise error_class(parsed_response, operation_name)
 botocore.exceptions.ClientError: An error occurred (XAmzContentSHA256Mismatch) when calling the PutObject operation: The Content-SHA256 you specified did not match what we received
 
@@ -43,5 +43,5 @@ Traceback (most recent call last):
   File "/usr/share/miniconda/envs/trapper_env/lib/python3.10/site-packages/boto3/s3/transfer.py", line 458, in upload_file
     raise S3UploadFailedError(
 boto3.exceptions.S3UploadFailedError: Failed to upload /tmp/10010009.JPG to fishes/trapper_data_collection/fisher/10010009.JPG: An error occurred (XAmzContentSHA256Mismatch) when calling the PutObject operation: The Content-SHA256 you specified did not match what we received
-2026-06-06 10:33:51,377 - INFO - Disconnecting from maphub
-2026-06-06 10:33:51,378 - INFO - Closing object storage connection
+2026-06-13 11:01:35,151 - INFO - Disconnecting from maphub
+2026-06-13 11:01:35,152 - INFO - Closing object storage connection
