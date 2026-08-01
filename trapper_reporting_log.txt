@@ -1,47 +1,168 @@
-2026-07-25 10:11:59,125 - INFO - Connecting to map hub
-2026-07-25 10:12:01,021 - INFO - Connection successful
-2026-07-25 10:12:01,021 - INFO - Connecting to object storage
-2026-07-25 10:12:44,788 - INFO - Downloading photos on the traps layer
-2026-07-25 10:13:11,653 - INFO - Downloading photos on the trap checks layer
-2026-07-25 10:14:12,680 - INFO - Downloading photos on the fisher layer
-2026-07-25 10:14:27,247 - INFO - Copying 10010009.JPG to object storage
-2026-07-25 10:14:28,676 - ERROR - There was an exception
-Traceback (most recent call last):
-  File "/usr/share/miniconda/envs/trapper_env/lib/python3.10/site-packages/boto3/s3/transfer.py", line 452, in upload_file
-    future.result()
-  File "/usr/share/miniconda/envs/trapper_env/lib/python3.10/site-packages/s3transfer/futures.py", line 111, in result
-    return self._coordinator.result()
-  File "/usr/share/miniconda/envs/trapper_env/lib/python3.10/site-packages/s3transfer/futures.py", line 287, in result
-    raise self._exception
-  File "/usr/share/miniconda/envs/trapper_env/lib/python3.10/site-packages/s3transfer/tasks.py", line 142, in __call__
-    return self._execute_main(kwargs)
-  File "/usr/share/miniconda/envs/trapper_env/lib/python3.10/site-packages/s3transfer/tasks.py", line 165, in _execute_main
-    return_value = self._main(**kwargs)
-  File "/usr/share/miniconda/envs/trapper_env/lib/python3.10/site-packages/s3transfer/upload.py", line 796, in _main
-    client.put_object(Bucket=bucket, Key=key, Body=body, **extra_args)
-  File "/usr/share/miniconda/envs/trapper_env/lib/python3.10/site-packages/botocore/client.py", line 606, in _api_call
-    return self._make_api_call(operation_name, kwargs)
-  File "/usr/share/miniconda/envs/trapper_env/lib/python3.10/site-packages/botocore/context.py", line 123, in wrapper
-    return func(*args, **kwargs)
-  File "/usr/share/miniconda/envs/trapper_env/lib/python3.10/site-packages/botocore/client.py", line 1094, in _make_api_call
-    raise error_class(parsed_response, operation_name)
-botocore.exceptions.ClientError: An error occurred (XAmzContentSHA256Mismatch) when calling the PutObject operation: The Content-SHA256 you specified did not match what we received
-
-During handling of the above exception, another exception occurred:
-
-Traceback (most recent call last):
-  File "/home/runner/work/trapper-data-reporting/trapper-data-reporting/trapper_data_collection/trapper_reporting.py", line 26, in run_app
-    report.download_attachments()
-  File "/home/runner/work/trapper-data-reporting/trapper-data-reporting/trapper_data_collection/trapper_reporting.py", line 131, in download_attachments
-    self.copy_to_object_storage(ago_layer=self.ago_fisher, layer_name='fisher',
-  File "/home/runner/work/trapper-data-reporting/trapper-data-reporting/trapper_data_collection/trapper_reporting.py", line 176, in copy_to_object_storage
-    self.boto_resource.meta.client.upload_file(attach_file, self.trapper_bucket, ostore_path)
-  File "/usr/share/miniconda/envs/trapper_env/lib/python3.10/site-packages/botocore/context.py", line 123, in wrapper
-    return func(*args, **kwargs)
-  File "/usr/share/miniconda/envs/trapper_env/lib/python3.10/site-packages/boto3/s3/inject.py", line 175, in upload_file
-    return transfer.upload_file(
-  File "/usr/share/miniconda/envs/trapper_env/lib/python3.10/site-packages/boto3/s3/transfer.py", line 458, in upload_file
-    raise S3UploadFailedError(
-boto3.exceptions.S3UploadFailedError: Failed to upload /tmp/10010009.JPG to fishes/trapper_data_collection/fisher/10010009.JPG: An error occurred (XAmzContentSHA256Mismatch) when calling the PutObject operation: The Content-SHA256 you specified did not match what we received
-2026-07-25 10:14:28,750 - INFO - Disconnecting from maphub
-2026-07-25 10:14:28,750 - INFO - Closing object storage connection
+2026-08-01 10:19:00,985 - INFO - Connecting to map hub
+2026-08-01 10:19:02,955 - INFO - Connection successful
+2026-08-01 10:19:02,955 - INFO - Connecting to object storage
+2026-08-01 10:19:47,892 - INFO - Downloading photos on the traps layer
+2026-08-01 10:20:18,207 - INFO - Downloading photos on the trap checks layer
+2026-08-01 10:21:27,333 - INFO - Downloading photos on the fisher layer
+2026-08-01 10:21:44,961 - INFO - Copying 10010009.JPG to object storage
+2026-08-01 10:21:48,907 - INFO - Copying IMG_9467.jpeg to object storage
+2026-08-01 10:21:50,578 - INFO - Copying 20260524_215232.jpg to object storage
+2026-08-01 10:21:51,499 - INFO - Copying IMG_5683.png to object storage
+2026-08-01 10:21:52,920 - INFO - Creating report
+2026-08-01 10:21:52,922 - INFO - Generating traps sheet
+2026-08-01 10:21:54,161 - INFO - Generating trap checks sheet
+2026-08-01 10:21:55,201 - INFO - Generating fisher sheet
+2026-08-01 10:21:56,207 - INFO - Uploading document to object storage
+2026-08-01 10:21:56,366 - INFO - Creating WILD report
+2026-08-01 10:21:57,368 - INFO - Getting info from TR0331T005_T005_1
+2026-08-01 10:21:59,720 - INFO - Getting info from TR0331T005_T005_2
+2026-08-01 10:22:01,254 - INFO - Getting info from TR0331T005_T005_3
+2026-08-01 10:22:02,613 - INFO - Getting info from TR0331T005_T005_4
+2026-08-01 10:22:03,986 - INFO - Getting info from TR0331T005_T005_5
+2026-08-01 10:22:05,439 - INFO - Getting info from TR0331T005_T005_6
+2026-08-01 10:22:07,446 - INFO - Getting info from TR0331T005_T005_7
+2026-08-01 10:22:09,005 - INFO - Getting info from TR0331T005_T005_8
+2026-08-01 10:22:10,240 - INFO - Getting info from TR0331T005_T005_9
+2026-08-01 10:22:11,742 - INFO - Getting info from TR0331T005_T005_10
+2026-08-01 10:22:13,050 - INFO - Getting info from TR0331T005_T005_11
+2026-08-01 10:22:14,550 - INFO - Getting info from TR0331T005_T005_12
+2026-08-01 10:22:15,961 - INFO - Getting info from TR0331T005_T005_13
+2026-08-01 10:22:17,390 - INFO - Getting info from TR0331T005_T005_14
+2026-08-01 10:22:18,877 - INFO - Getting info from TR0331T005_T005_18
+2026-08-01 10:22:20,292 - INFO - Getting info from TR0331T005_T005_15
+2026-08-01 10:22:21,810 - INFO - Getting info from TR0331T005_T005_16
+2026-08-01 10:22:23,285 - INFO - Getting info from TR0331T005_T005_17
+2026-08-01 10:22:24,820 - INFO - Getting info from TR0330T006_T006_1
+2026-08-01 10:22:26,152 - INFO - Getting info from TR0330T006_T006_2
+2026-08-01 10:22:27,612 - INFO - Getting info from TR0330T006_T006_3
+2026-08-01 10:22:29,156 - INFO - Getting info from TR0330T006_T006_4
+2026-08-01 10:22:30,659 - INFO - Getting info from TR0330T006_T006_5
+2026-08-01 10:22:31,932 - INFO - Getting info from TR0330T006_T006_6
+2026-08-01 10:22:33,319 - INFO - Getting info from TR0712T012_T012_1
+2026-08-01 10:22:34,806 - INFO - Getting info from TR0712T012_T012_2
+2026-08-01 10:22:36,276 - INFO - Getting info from TR0712T012_T012_3
+2026-08-01 10:22:37,680 - INFO - Getting info from TR0712T010_T010_1
+2026-08-01 10:22:39,082 - INFO - Getting info from TR0712T010_T010_2
+2026-08-01 10:22:40,608 - INFO - Getting info from TR0712T012_T012_4
+2026-08-01 10:22:40,831 - INFO - Getting info from TR0712T012_T012_5
+2026-08-01 10:22:41,002 - INFO - Getting info from TR0317T005_T005_1
+2026-08-01 10:22:41,163 - INFO - Getting info from TR0714T005_T005_1
+2026-08-01 10:22:42,541 - INFO - Getting info from TR0714T005_T005_2
+2026-08-01 10:22:44,052 - INFO - Getting info from TR0714T005_T005_3
+2026-08-01 10:22:45,510 - INFO - Getting info from TR0515T003_T003_1
+2026-08-01 10:22:47,017 - INFO - Getting info from TR0515T003_T003_2
+2026-08-01 10:22:48,649 - INFO - Getting info from TR0715T013_T013_1
+2026-08-01 10:22:50,199 - INFO - Getting info from TR0515T003_T003_3
+2026-08-01 10:22:50,445 - INFO - Getting info from TR0515T003_T003_4
+2026-08-01 10:22:50,615 - INFO - Getting info from TR0715T013_T013_2
+2026-08-01 10:22:50,787 - INFO - Getting info from TR0331T002_T002_1
+2026-08-01 10:22:50,945 - INFO - Getting info from TR0331T002_T002_2
+2026-08-01 10:22:51,160 - INFO - Getting info from TR0331T002_T002_3
+2026-08-01 10:22:51,333 - INFO - Getting info from TR0331T002_T002_4
+2026-08-01 10:22:51,528 - INFO - Getting info from TR0331T002_T002_5
+2026-08-01 10:22:51,691 - INFO - Getting info from TR0331T002_T002_6
+2026-08-01 10:22:51,861 - INFO - Getting info from TR0712T010_T010_3
+2026-08-01 10:22:53,165 - INFO - Getting info from TR0712T010_T010_4
+2026-08-01 10:22:54,594 - INFO - Getting info from TR0712T010_T010_5
+2026-08-01 10:22:55,943 - INFO - Getting info from TR0712T010_T010_6
+2026-08-01 10:22:57,363 - INFO - Getting info from TR0712T009_T009_1
+2026-08-01 10:22:58,785 - INFO - Getting info from TR0712T012_T012_6
+2026-08-01 10:23:00,229 - INFO - Getting info from TR0712T012_T012_7
+2026-08-01 10:23:01,682 - INFO - Getting info from TR0712T012_T012_8
+2026-08-01 10:23:03,266 - INFO - Getting info from TR0712T012_T012_9
+2026-08-01 10:23:03,536 - INFO - Getting info from TR0712T012_T012_10
+2026-08-01 10:23:05,106 - INFO - Getting info from TR0712T012_T012_11
+2026-08-01 10:23:06,371 - INFO - Getting info from TR0712T012_T012_12
+2026-08-01 10:23:07,912 - INFO - Getting info from TR0712T012_T012_13
+2026-08-01 10:23:09,678 - INFO - Getting info from TR0515T019_T019_1
+2026-08-01 10:23:10,058 - INFO - Getting info from TR0502T054_T054_1
+2026-08-01 10:23:10,249 - INFO - Getting info from TR0515T019_T019_2
+2026-08-01 10:23:10,515 - INFO - Getting info from TR0331T005_T005_19
+2026-08-01 10:23:11,918 - INFO - Getting info from TR0331T002_T002_7
+2026-08-01 10:23:12,172 - INFO - Getting info from TR0331T002_T002_8
+2026-08-01 10:23:12,359 - INFO - Getting info from TR0331T002_T002_9
+2026-08-01 10:23:12,556 - INFO - Getting info from TR0331T005_T005_20
+2026-08-01 10:23:12,728 - INFO - Getting info from TR0331T005_T005_21
+2026-08-01 10:23:12,887 - INFO - Getting info from TR0331T005_T005_22
+2026-08-01 10:23:14,268 - INFO - Getting info from TR0513T018_T018_1
+2026-08-01 10:23:14,492 - INFO - Getting info from TR0331T005_T005_23
+2026-08-01 10:23:15,754 - INFO - Getting info from TR0502T054_T054_2
+2026-08-01 10:23:16,005 - INFO - Getting info from TR0712T010_T010_7
+2026-08-01 10:23:17,562 - INFO - Getting info from TR0712T012_T012_14
+2026-08-01 10:23:18,993 - INFO - Getting info from TR0712T012_T012_15
+2026-08-01 10:23:20,391 - INFO - Getting info from TR0331T005_T005_24
+2026-08-01 10:23:20,676 - INFO - Getting info from TR0331T005_T005_25
+2026-08-01 10:23:22,205 - INFO - Getting info from TR0331T005_T005_26
+2026-08-01 10:23:23,620 - INFO - Getting info from TR0331T005_T005_27
+2026-08-01 10:23:25,181 - INFO - Getting info from TR0331T005_T005_28
+2026-08-01 10:23:26,652 - INFO - Getting info from TR0331T005_T005_29
+2026-08-01 10:23:28,026 - INFO - Getting info from TR0710T007_T007_1
+2026-08-01 10:23:29,384 - INFO - Getting info from TR0725T001_T001_1
+2026-08-01 10:23:29,606 - INFO - Getting info from TR0330T006_T006_7
+2026-08-01 10:23:31,208 - INFO - Getting info from TR0331T005_T005_30
+2026-08-01 10:23:31,445 - INFO - Getting info from TR0331T005_T005_31
+2026-08-01 10:23:31,609 - INFO - Getting info from UNKNOWN_NOWN_1
+2026-08-01 10:23:32,840 - INFO - Getting info from UNKNOWN_NOWN_2
+2026-08-01 10:23:34,067 - INFO - Getting info from TR0712T012_T012_16
+2026-08-01 10:23:35,618 - INFO - Getting info from TR0712T012_T012_17
+2026-08-01 10:23:37,044 - INFO - Getting info from TR0712T012_T012_18
+2026-08-01 10:23:38,555 - INFO - Getting info from TR0712T012_T012_19
+2026-08-01 10:23:38,822 - INFO - Getting info from TR0712T012_T012_20
+2026-08-01 10:23:40,354 - INFO - Getting info from TR0712T012_T012_21
+2026-08-01 10:23:41,724 - INFO - Getting info from TR0615T010_T010_1
+2026-08-01 10:23:43,295 - INFO - Getting info from TR0615T010_T010_2
+2026-08-01 10:23:44,596 - INFO - Getting info from TR0615T010_T010_3
+2026-08-01 10:23:45,868 - INFO - Getting info from TR0712T010_T010_8
+2026-08-01 10:23:47,270 - INFO - Getting info from TR0712T012_T012_22
+2026-08-01 10:23:48,851 - INFO - Getting info from TR0502T018_T018_1
+2026-08-01 10:23:50,342 - INFO - Getting info from TR0502T018_T018_2
+2026-08-01 10:23:52,101 - INFO - Getting info from TR0502T018_T018_3
+2026-08-01 10:23:53,516 - INFO - Getting info from TR0502T018_T018_4
+2026-08-01 10:23:54,997 - INFO - Getting info from TR0502T018_T018_5
+2026-08-01 10:23:56,342 - INFO - Getting info from TR0502T018_T018_6
+2026-08-01 10:23:57,877 - INFO - Getting info from TR0502T018_T018_7
+2026-08-01 10:23:59,399 - INFO - Getting info from TR0502T018_T018_8
+2026-08-01 10:24:00,884 - INFO - Getting info from TR0502T018_T018_9
+2026-08-01 10:24:02,243 - INFO - Getting info from TR0502T018_T018_10
+2026-08-01 10:24:03,945 - INFO - Getting info from TR0502T018_T018_11
+2026-08-01 10:24:05,437 - INFO - Getting info from TR0502T018_T018_12
+2026-08-01 10:24:06,952 - INFO - Getting info from TR0502T018_T018_13
+2026-08-01 10:24:08,721 - INFO - Getting info from TR0502T018_T018_14
+2026-08-01 10:24:10,120 - INFO - Getting info from TR0502T018_T018_15
+2026-08-01 10:24:11,608 - INFO - Getting info from UNKNOWN_NOWN_3
+2026-08-01 10:24:11,863 - INFO - Getting info from TR0502T005_T005_1
+2026-08-01 10:24:13,435 - INFO - Getting info from UNKNOWN_NOWN_4
+2026-08-01 10:24:14,906 - INFO - Getting info from TR0331T005_T005_32
+2026-08-01 10:24:15,144 - INFO - Getting info from TR0331T005_T005_33
+2026-08-01 10:24:15,301 - INFO - Getting info from TR0331T006_T006_1
+2026-08-01 10:24:15,478 - INFO - Getting info from TR0331T005_
+2026-08-01 10:24:16,917 - INFO - Getting info from TR0331T005_T005_34
+2026-08-01 10:24:17,135 - INFO - Working on trap year: 2023/24
+2026-08-01 10:24:17,135 - INFO - Creating report for TR0330T006
+2026-08-01 10:24:17,148 - INFO - Uploading document to object storage
+2026-08-01 10:24:17,221 - INFO - Creating report for TR0331T005
+2026-08-01 10:24:17,233 - INFO - Uploading document to object storage
+2026-08-01 10:24:17,327 - INFO - Creating report for TR0502T005
+2026-08-01 10:24:17,335 - INFO - Uploading document to object storage
+2026-08-01 10:24:17,455 - INFO - Creating report for TR0502T018
+2026-08-01 10:24:17,463 - INFO - Uploading document to object storage
+2026-08-01 10:24:17,569 - INFO - Creating report for TR0515T003
+2026-08-01 10:24:17,577 - INFO - Uploading document to object storage
+2026-08-01 10:24:17,650 - INFO - Creating report for TR0615T010
+2026-08-01 10:24:17,658 - INFO - Uploading document to object storage
+2026-08-01 10:24:17,729 - INFO - Creating report for TR0710T007
+2026-08-01 10:24:17,737 - INFO - Uploading document to object storage
+2026-08-01 10:24:17,809 - INFO - Creating report for TR0712T009
+2026-08-01 10:24:17,816 - INFO - Uploading document to object storage
+2026-08-01 10:24:17,900 - INFO - Creating report for TR0712T010
+2026-08-01 10:24:17,909 - INFO - Uploading document to object storage
+2026-08-01 10:24:17,994 - INFO - Creating report for TR0712T012
+2026-08-01 10:24:18,004 - INFO - Uploading document to object storage
+2026-08-01 10:24:18,101 - INFO - Creating report for TR0714T005
+2026-08-01 10:24:18,109 - INFO - Uploading document to object storage
+2026-08-01 10:24:18,199 - INFO - Creating report for TR0715T013
+2026-08-01 10:24:18,207 - INFO - Uploading document to object storage
+2026-08-01 10:24:18,302 - INFO - Creating report for UNKNOWN
+2026-08-01 10:24:18,310 - INFO - Uploading document to object storage
+2026-08-01 10:24:18,417 - INFO - Disconnecting from maphub
+2026-08-01 10:24:18,417 - INFO - Closing object storage connection
