@@ -4,5 +4,5 @@ channels:
   - anaconda
   - defaults
 dependencies:
-  - python=3.10.14
+  - python=3.10.16
   - arcgis
